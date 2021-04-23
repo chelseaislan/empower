@@ -53,7 +53,7 @@ class WalletScreen extends StatelessWidget {
               historyContainer(
                 Icons.phone_in_talk_rounded,
                 "All-net Basic",
-                "22 March 2021",
+                "21 March 2021",
                 "Rp15.000",
               ),
             ],

@@ -36,7 +36,7 @@ class Payment extends StatelessWidget {
                     paymentSelect(
                         context, "images/permata.svg", "Bank Permata", true),
                     paymentSelect(
-                        context, "images/card.svg", "Debit/Credit Card", false),
+                        context, "images/card.svg", "Visa/Mastercard", false),
                   ],
                 ),
               ),

@@ -51,7 +51,7 @@ class SignupLogin extends StatelessWidget {
           color: primary1,
         ),
         label: Text(
-          "Trace My SIM Card",
+          "Track My SIM Card",
           style: TextStyle(color: primary1),
         ),
       ),

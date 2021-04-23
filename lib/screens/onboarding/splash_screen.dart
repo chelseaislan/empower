@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        // Background gradient MPWR
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [primary1, primary2],

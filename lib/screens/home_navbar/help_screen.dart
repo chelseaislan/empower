@@ -39,7 +39,7 @@ class HelpScreen extends StatelessWidget {
             indent: 20,
             endIndent: 20,
           ),
-          buttonContainer("Unreg SIM Card"),
+          buttonContainer("Unreg my SIM Card"),
           versionContainer()
         ],
       ),

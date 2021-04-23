@@ -34,7 +34,7 @@ class Shipping extends StatelessWidget {
                   Icons.location_city_rounded),
               textFieldColumn("Postal Code", TextInputType.number,
                   Icons.location_on_rounded),
-              textFieldColumn("Active Phone Number", TextInputType.number,
+              textFieldColumn("Recipient Phone Number", TextInputType.number,
                   Icons.phone_in_talk_rounded),
               totalContainer(context),
             ],
