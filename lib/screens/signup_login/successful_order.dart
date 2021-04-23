@@ -1,4 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
 import 'package:flutter/material.dart';
 
 class SuccessfulOrder extends StatelessWidget {
@@ -59,48 +61,35 @@ class SuccessfulOrder extends StatelessWidget {
                           "Tracking Number",
                           "31093103019",
                         ),
-                        SizedBox(height: 15),
-                        buttonContainer(context, "/login",
-                            Icons.local_shipping_rounded, "Track My SIM Card"),
-                        buttonContainer(context, "/login",
-                            Icons.account_circle_rounded, "Go to Login Page"),
+                        Container(
+                          height: 45,
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          child: OutlineCircularButton(
+                            iconData: Icons.copy_rounded,
+                            labelText: "Copy Tracking Number",
+                            route: "/belum_ada",
+                            myColor: primary1,
+                          ),
+                        ),
                       ],
                     ),
-                  )
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: 45,
+                      margin: EdgeInsets.only(bottom: 30),
+                      child: FilledCircularButton(
+                        iconData: Icons.login_rounded,
+                        labelText: "Go to Login Page",
+                        route: "/login",
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Container buttonContainer(BuildContext context, newRouteName, icon, text) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.only(bottom: 10),
-      height: 45,
-      child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          primary: white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-            side: BorderSide(color: primary1),
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(newRouteName, (route) => false);
-        },
-        icon: Icon(
-          icon,
-          color: primary1,
-        ),
-        label: Text(
-          text,
-          style: TextStyle(color: primary1),
         ),
       ),
     );

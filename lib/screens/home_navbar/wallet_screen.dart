@@ -1,4 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -29,7 +32,7 @@ class WalletScreen extends StatelessWidget {
       body: ListView(
         children: [
           balanceContainer(),
-          titleContainer(),
+          TextStyleOne(title: "Your latest transactions"),
           Column(
             children: [
               historyContainer(
@@ -58,7 +61,7 @@ class WalletScreen extends StatelessWidget {
               ),
             ],
           ),
-          versionContainer()
+          AppVerContainer()
         ],
       ),
     );
@@ -122,35 +125,6 @@ class WalletScreen extends StatelessWidget {
     );
   }
 
-  Container titleContainer() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
-      child: Text(
-        "Your latest transactions",
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: primaryBlack,
-        ),
-      ),
-    );
-  }
-
-  Container versionContainer() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        "MPWR version 4.2.0, All Rights Reserved",
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: lightGrey2,
-        ),
-      ),
-    );
-  }
-
   Container balanceContainer() {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
@@ -183,22 +157,14 @@ class WalletScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: Icon(
-              Icons.arrow_circle_up_rounded,
-              color: appBarColor,
-            ),
-            label: Text(
-              "Top Up",
-              style: TextStyle(color: appBarColor, fontSize: 12),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: white,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
+          Container(
+            height: 45,
+            margin: EdgeInsets.symmetric(vertical: 10),
+            child: OutlineCircularButton(
+              iconData: Icons.arrow_circle_up_rounded,
+              labelText: "Top-up Balance",
+              route: "/add_balance",
+              myColor: appBarColor,
             ),
           ),
         ],

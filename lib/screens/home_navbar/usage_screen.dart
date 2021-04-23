@@ -1,4 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
 
 class UsageScreen extends StatelessWidget {
@@ -29,30 +32,15 @@ class UsageScreen extends StatelessWidget {
       body: ListView(
         children: [
           usageContainer(),
-          titleContainer(),
+          TextStyleOne(title: "Your package details"),
           indicatorContainer(
               context, Icons.language_rounded, "Data", "7.54", "GB", 0.6),
           indicatorContainer(
               context, Icons.add_circle_rounded, "Topping", "1.13", "GB", 0.1),
           indicatorContainer(context, Icons.phone_callback_rounded, "Phone",
               "0", "minutes", 0),
-          versionContainer(),
+          AppVerContainer(),
         ],
-      ),
-    );
-  }
-
-  Container versionContainer() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        "MPWR version 4.2.0, All Rights Reserved",
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: lightGrey2,
-        ),
       ),
     );
   }
@@ -136,20 +124,6 @@ class UsageScreen extends StatelessWidget {
     );
   }
 
-  Container titleContainer() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
-      child: Text(
-        "Your package details",
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: secondBlack,
-        ),
-      ),
-    );
-  }
-
   Container usageContainer() {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
@@ -183,42 +157,27 @@ class UsageScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.add_circle_rounded,
-                  color: appBarColor,
-                ),
-                label: Text(
-                  "Add Topping",
-                  style: TextStyle(color: appBarColor, fontSize: 12),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: white,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+              Container(
+                height: 45,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: OutlineCircularButton(
+                  iconData: Icons.add_circle_rounded,
+                  labelText: "Add Topping",
+                  route: "/add_topping",
+                  myColor: appBarColor,
                 ),
               ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.phone_callback_rounded,
-                  color: appBarColor,
-                ),
-                label: Text(
-                  "Add Phone Package",
-                  style: TextStyle(color: appBarColor, fontSize: 12),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: white,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+              SizedBox(width: 10),
+              Container(
+                height: 45,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: OutlineCircularButton(
+                  iconData: Icons.phone_callback_rounded,
+                  labelText: "Add Phone",
+                  route: "/add_phone",
+                  myColor: appBarColor,
                 ),
               ),
             ],

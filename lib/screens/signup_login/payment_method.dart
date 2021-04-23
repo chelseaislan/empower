@@ -1,4 +1,5 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,28 +23,35 @@ class Payment extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    paymentSelect(context, "images/bca.svg", "Bank BCA", false),
-                    paymentSelect(context, "images/bni.svg", "Bank BNI", false),
-                    paymentSelect(
-                        context, "images/mandiri.svg", "Bank Mandiri", false),
-                    paymentSelect(
-                        context, "images/permata.svg", "Bank Permata", true),
-                    paymentSelect(
-                        context, "images/card.svg", "Visa/Mastercard", false),
-                  ],
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                paymentSelect(context, "images/bca.svg", "Bank BCA", false),
+                paymentSelect(context, "images/bni.svg", "Bank BNI", false),
+                paymentSelect(
+                    context, "images/mandiri.svg", "Bank Mandiri", false),
+                paymentSelect(
+                    context, "images/permata.svg", "Bank Permata", true),
+                paymentSelect(
+                    context, "images/card.svg", "Visa/Mastercard", false),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              children: [
+                agreeContainer(),
+                TotalPriceNew(
+                  titleText: "Total Price:",
+                  totalPrice: "30.000",
+                  route: "/successful",
                 ),
-              ),
-              agreeContainer(),
-              totalContainer(context),
-            ],
-          )
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -103,69 +111,6 @@ class Payment extends StatelessWidget {
             child: Icon(
               Icons.check_circle_rounded,
               color: primary1,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Container totalContainer(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 7,
-            child: Container(
-              margin: EdgeInsets.only(right: 10),
-              decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 2,
-                      spreadRadius: 1,
-                      color: lightGrey2,
-                    )
-                  ]),
-              padding: EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Total Price",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: secondBlack,
-                    ),
-                  ),
-                  Text(
-                    "Rp20.000",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: primary1,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed("/successful"),
-            child: Container(
-              margin: EdgeInsets.only(left: 10),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: primary1,
-              ),
-              child: Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: white,
-              ),
             ),
           )
         ],

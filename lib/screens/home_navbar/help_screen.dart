@@ -1,4 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/profile_help_buttons.dart';
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -28,63 +30,37 @@ class HelpScreen extends StatelessWidget {
       body: ListView(
         children: [
           headerContainer(),
-          buttonContainer("Frequently Asked Questions"),
-          buttonContainer("Submit a Help Ticket"),
-          buttonContainer("View my Help Ticket history"),
-          buttonContainer("MPWR Terms of Use"),
-          buttonContainer("MPWR Privacy Policy"),
+          ProfileHelpButtons(
+            labelText: "Frequently Asked Questions",
+            materialColor: Colors.amber[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "Submit a Help Ticket",
+            materialColor: Colors.amber[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "View Help Ticket History",
+            materialColor: Colors.amber[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "MPWR Terms of Use",
+            materialColor: Colors.amber[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "MPWR Privacy Policy",
+            materialColor: Colors.amber[800],
+          ),
           Divider(
             height: 25,
             thickness: 1,
             indent: 20,
             endIndent: 20,
           ),
-          buttonContainer("Unreg my SIM Card"),
-          versionContainer()
-        ],
-      ),
-    );
-  }
-
-  Container versionContainer() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        "MPWR version 4.2.0, All Rights Reserved",
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: lightGrey2,
-        ),
-      ),
-    );
-  }
-
-  Container buttonContainer(title) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.amber[800],
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: white,
-            ),
+          ProfileHelpButtons(
+            labelText: "Unreg my SIM Card",
+            materialColor: Colors.amber[800],
           ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: white,
-            size: 20,
-          ),
+          AppVerContainer(),
         ],
       ),
     );

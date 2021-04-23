@@ -1,4 +1,5 @@
 // Ini lebih ke function dari UI nya
+import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
 import 'package:flutter/material.dart';
 import 'onboarding_ui.dart';
 import 'package:fake_mpwr/colors.dart';
@@ -60,17 +61,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: (_currentPage == 2)
                     ? Container(
                         width: myWidth * 0.5,
-                        child: ElevatedButton(
-                          onPressed: () =>
-                              Navigator.of(context).pushNamed("/login"),
-                          child: Text("Continue"),
-                          style: ElevatedButton.styleFrom(
-                            primary: primary1,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
+                        child: FilledCircularButton(
+                          iconData: Icons.play_circle_outline_rounded,
+                          labelText: "Continue",
+                          route: "/login",
                         ),
                       )
                     : SizedBox(),

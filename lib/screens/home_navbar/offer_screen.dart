@@ -1,4 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
 
 class OfferScreen extends StatelessWidget {
@@ -28,7 +30,7 @@ class OfferScreen extends StatelessWidget {
       body: ListView(
         children: [
           headerContainer(),
-          titleContainer("Offers from MPWR"),
+          TextStyleOne(title: "Offers from MPWR"),
           // ListView(
           //   scrollDirection: Axis.horizontal,
           //   children: [
@@ -46,21 +48,8 @@ class OfferScreen extends StatelessWidget {
           //     ),
           //   ],
           // ),
+          AppVerContainer(),
         ],
-      ),
-    );
-  }
-
-  Container titleContainer(title) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: primaryBlack,
-        ),
       ),
     );
   }

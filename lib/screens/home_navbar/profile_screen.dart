@@ -1,4 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/profile_help_buttons.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -29,62 +31,72 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: [
           profileContainer(),
-          buttonContainer("Edit Profile"),
-          buttonContainer("Invite friends to get rewards!"),
-          buttonContainer("Lost your SIM card?"),
-          buttonContainer("Edit shipping address"),
-          buttonContainer("Change Language"),
+          ProfileHelpButtons(
+            labelText: "Edit Profile",
+            materialColor: Colors.red[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "Invite friends to get rewards!",
+            materialColor: Colors.red[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "Lost your SIM card?",
+            materialColor: Colors.red[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "Edit shipping address",
+            materialColor: Colors.red[800],
+          ),
+          ProfileHelpButtons(
+            labelText: "Change Language",
+            materialColor: Colors.red[800],
+          ),
           GestureDetector(
-              onTap: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil("/login", (route) => false);
-              },
-              child: buttonContainer("Log Out")),
-          versionContainer()
-        ],
-      ),
-    );
-  }
-
-  Container versionContainer() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        "MPWR version 4.2.0, All Rights Reserved",
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: lightGrey2,
-        ),
-      ),
-    );
-  }
-
-  Container buttonContainer(title) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.red[800],
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: white,
+            child: ProfileHelpButtons(
+              labelText: "Log Out",
+              materialColor: Colors.red[800],
             ),
+            onTap: () {
+              // Show Dialog for confirmation
+              return showDialog(
+                context: context,
+                builder: (builder) => AlertDialog(
+                  title: Text("Confirmation"),
+                  content: Text("Log out from MPWR?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: primary1,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            "/login", (route) => false);
+                      },
+                      child: Text(
+                        "Log Out",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: primary1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: white,
-            size: 20,
-          ),
+          AppVerContainer(),
         ],
       ),
     );

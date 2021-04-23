@@ -1,4 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
+import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
 import 'package:flutter/material.dart';
 
 class SignupLogin extends StatelessWidget {
@@ -7,22 +10,29 @@ class SignupLogin extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              headerContainer(),
-              textFieldContainer(),
-              Container(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                child: Row(
-                  children: [
-                    signupButton(context),
-                    Expanded(flex: 1, child: SizedBox()),
-                    loginButton(context),
-                  ],
-                ),
-              )
-            ],
+          headerContainer(),
+          SizedBox(height: 20),
+          LoginTextField(
+            title: "Email Address",
+            type: TextInputType.emailAddress,
+            obscure: false,
+            iconData: Icons.email_rounded,
+          ),
+          LoginTextField(
+            title: "Password",
+            type: TextInputType.text,
+            obscure: true,
+            iconData: Icons.vpn_key_rounded,
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
+            child: Row(
+              children: [
+                signupButton(context),
+                Expanded(flex: 1, child: SizedBox()),
+                loginButton(context),
+              ],
+            ),
           ),
           shippingContainer(context),
         ],
@@ -33,27 +43,13 @@ class SignupLogin extends StatelessWidget {
   Container shippingContainer(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.symmetric(vertical: 10),
       height: 45,
-      child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          primary: white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-            side: BorderSide(color: primary1),
-          ),
-        ),
-        onPressed: () {
-          Navigator.of(context).pushNamed("/trace_card");
-        },
-        icon: Icon(
-          Icons.local_shipping_rounded,
-          color: primary1,
-        ),
-        label: Text(
-          "Track My SIM Card",
-          style: TextStyle(color: primary1),
-        ),
+      child: OutlineCircularButton(
+        iconData: Icons.local_shipping_rounded,
+        labelText: "Track My SIM Card 1",
+        route: "/track_card",
+        myColor: primary1,
       ),
     );
   }
@@ -63,22 +59,10 @@ class SignupLogin extends StatelessWidget {
       flex: 10,
       child: Container(
         height: 45,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            primary: primary1,
-            elevation: 0,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          ),
-          onPressed: () {
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil("/navbar", (route) => false);
-          },
-          icon: Icon(
-            Icons.login_rounded,
-            color: white,
-          ),
-          label: Text("Log In"),
+        child: FilledCircularButton(
+          iconData: Icons.login_rounded,
+          labelText: "Log In 1",
+          route: "/navbar",
         ),
       ),
     );
@@ -89,94 +73,13 @@ class SignupLogin extends StatelessWidget {
       flex: 10,
       child: Container(
         height: 45,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            primary: white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-              side: BorderSide(color: primary1),
-            ),
-          ),
-          onPressed: () {
-            Navigator.of(context).pushNamed("/choose_number");
-          },
-          icon: Icon(
-            Icons.group_add_rounded,
-            color: primary1,
-          ),
-          label: Text(
-            "Sign Up",
-            style: TextStyle(color: primary1),
-          ),
+        child: OutlineCircularButton(
+          iconData: Icons.group_add_rounded,
+          labelText: "Sign Up 1",
+          route: "/choose_number",
+          myColor: primary1,
         ),
       ),
-    );
-  }
-
-  Container textFieldContainer() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
-      color: lightGrey1,
-      child: Column(
-        children: [
-          textFieldColumn(
-            "Email Address",
-            TextInputType.emailAddress,
-            false,
-            Icons.email_rounded,
-          ),
-          textFieldColumn(
-            "Password",
-            TextInputType.text,
-            true,
-            Icons.vpn_key_rounded,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Column textFieldColumn(title, type, obscure, icon) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: secondBlack,
-            ),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: TextFormField(
-            keyboardType: type,
-            obscureText: obscure,
-            decoration: InputDecoration(
-              hintText: "Enter $title",
-              fillColor: white,
-              filled: true,
-              suffixIcon: Icon(
-                icon,
-                color: primary1,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(width: 2, color: primary1),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(width: 2, color: primary1),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 

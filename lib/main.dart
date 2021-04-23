@@ -6,6 +6,8 @@ import 'package:fake_mpwr/screens/signup_login/payment_method.dart';
 import 'package:fake_mpwr/screens/signup_login/shipping_page.dart';
 import 'package:fake_mpwr/screens/signup_login/signup_login_page.dart';
 import 'package:fake_mpwr/screens/signup_login/successful_order.dart';
+import 'package:fake_mpwr/screens/signup_login/track_sim_card.dart';
+import 'package:fake_mpwr/screens/top_up/add_topping.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,6 +28,10 @@ class MyApp extends StatelessWidget {
         "/payment": (context) => new Payment(),
         "/successful": (context) => new SuccessfulOrder(),
         "/navbar": (context) => new HomeNavBar(),
+        "/track_card": (context) => new TrackCard(),
+        "/add_topping": (context) => new AddTopping(),
+        "/add_phone": (context) => new AddTopping(),
+        "/add_balance": (context) => new AddTopping(),
       },
     );
   }
