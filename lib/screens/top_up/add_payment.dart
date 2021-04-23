@@ -1,16 +1,16 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/payment_options.dart';
 import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class Payment extends StatelessWidget {
+class AddPayment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: lightGrey1,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: secondBlack),
-        backgroundColor: lightGrey1,
+        backgroundColor: appBarColor,
         centerTitle: true,
         elevation: 0,
         title: Text(
@@ -18,12 +18,17 @@ class Payment extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: secondBlack,
+            color: white,
           ),
         ),
       ),
       body: ListView(
         children: [
+          BlueHeader(
+            title: "Confirm order and pay",
+            subtitle:
+                "Please make the payment, after that you can enjoy all the features and benefits.",
+          ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -49,14 +54,14 @@ class Payment extends StatelessWidget {
                 PaymentOptions(
                   imagePath: "images/permata.svg",
                   bankName: "Bank Permata",
-                  visibleStatus: true,
-                  myColor: primary1,
+                  visibleStatus: false,
+                  myColor: lightGrey2,
                 ),
                 PaymentOptions(
                   imagePath: "images/jago.svg",
                   bankName: "Bank Jago",
-                  visibleStatus: false,
-                  myColor: lightGrey2,
+                  visibleStatus: true,
+                  myColor: appBarColor,
                 ),
                 PaymentOptions(
                   imagePath: "images/card.svg",
@@ -67,28 +72,13 @@ class Payment extends StatelessWidget {
               ],
             ),
           ),
-          agreeContainer(),
           TotalPriceNew(
             titleText: "Total Price:",
-            totalPrice: "30.000",
-            routeNext: "/successful",
-            myColor: primary1,
-          ),
+            totalPrice: "0",
+            routeNext: "/belum_ada",
+            myColor: appBarColor,
+          )
         ],
-      ),
-    );
-  }
-
-  Container agreeContainer() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
-      child: Text(
-        "By purchasing a SIM card, you will automatically agree to our Terms of Use and Privacy Policy, and agree to receive promotions from us and our third parties.",
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: secondBlack,
-        ),
       ),
     );
   }

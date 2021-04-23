@@ -109,7 +109,7 @@ class OfferScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.add_circle_rounded, color: primary1),
+                      Icon(Icons.add_chart_rounded, color: primary1),
                       SizedBox(width: 5),
                       Text("1.13 GB"),
                     ],

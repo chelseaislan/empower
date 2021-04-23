@@ -5,14 +5,17 @@ class TotalPriceNew extends StatelessWidget {
   // 1. Declare required final variables and auto create constructor
   final String titleText;
   final String totalPrice;
-  final String route;
+  final String routeNext;
+  final Color myColor;
 
-  const TotalPriceNew({Key key, this.titleText, this.totalPrice, this.route})
+  const TotalPriceNew(
+      {Key key, this.titleText, this.totalPrice, this.routeNext, this.myColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 115,
       padding: EdgeInsets.all(20),
       child: Row(
         children: [
@@ -47,7 +50,7 @@ class TotalPriceNew extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: primary1,
+                      color: myColor,
                     ),
                   ),
                 ],
@@ -55,13 +58,13 @@ class TotalPriceNew extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(route),
+            onTap: () => Navigator.of(context).pushNamed(routeNext),
             child: Container(
               margin: EdgeInsets.only(left: 10),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: primary1,
+                color: myColor,
               ),
               child: Icon(
                 Icons.arrow_forward_ios_rounded,

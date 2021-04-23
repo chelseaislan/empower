@@ -36,7 +36,7 @@ class UsageScreen extends StatelessWidget {
           indicatorContainer(
               context, Icons.language_rounded, "Data", "7.54", "GB", 0.6),
           indicatorContainer(
-              context, Icons.add_circle_rounded, "Topping", "1.13", "GB", 0.1),
+              context, Icons.add_chart_rounded, "Topping", "1.13", "GB", 0.1),
           indicatorContainer(context, Icons.phone_callback_rounded, "Phone",
               "0", "minutes", 0),
           AppVerContainer(),
@@ -164,18 +164,29 @@ class UsageScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: OutlineCircularButton(
                   iconData: Icons.add_circle_rounded,
-                  labelText: "Add Topping",
-                  route: "/add_topping",
+                  labelText: "Data",
+                  route: "/add_data",
                   myColor: appBarColor,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 5),
               Container(
                 height: 45,
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: OutlineCircularButton(
-                  iconData: Icons.phone_callback_rounded,
-                  labelText: "Add Phone",
+                  iconData: Icons.add_circle_rounded,
+                  labelText: "Topping",
+                  route: "/add_topping",
+                  myColor: appBarColor,
+                ),
+              ),
+              SizedBox(width: 5),
+              Container(
+                height: 45,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: OutlineCircularButton(
+                  iconData: Icons.add_circle_rounded,
+                  labelText: "Phone",
                   route: "/add_phone",
                   myColor: appBarColor,
                 ),

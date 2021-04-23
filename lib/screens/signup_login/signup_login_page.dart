@@ -47,7 +47,7 @@ class SignupLogin extends StatelessWidget {
       height: 45,
       child: OutlineCircularButton(
         iconData: Icons.local_shipping_rounded,
-        labelText: "Track My SIM Card 1",
+        labelText: "Track/Activate My SIM Card",
         route: "/track_card",
         myColor: primary1,
       ),
@@ -61,7 +61,7 @@ class SignupLogin extends StatelessWidget {
         height: 45,
         child: FilledCircularButton(
           iconData: Icons.login_rounded,
-          labelText: "Log In 1",
+          labelText: "Log In",
           route: "/navbar",
         ),
       ),
@@ -75,7 +75,7 @@ class SignupLogin extends StatelessWidget {
         height: 45,
         child: OutlineCircularButton(
           iconData: Icons.group_add_rounded,
-          labelText: "Sign Up 1",
+          labelText: "Sign Up",
           route: "/choose_number",
           myColor: primary1,
         ),

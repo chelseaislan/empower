@@ -24,54 +24,48 @@ class Shipping extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              LoginTextField(
-                title: "Full Name",
-                type: TextInputType.name,
-                obscure: false,
-                iconData: Icons.person_rounded,
-              ),
-              LoginTextField(
-                title: "KTP Number",
-                type: TextInputType.number,
-                obscure: false,
-                iconData: Icons.library_books_rounded,
-              ),
-              LoginTextField(
-                title: "KK Number",
-                type: TextInputType.number,
-                obscure: false,
-                iconData: Icons.library_books_rounded,
-              ),
-              LoginTextField(
-                title: "Shipping Address",
-                type: TextInputType.streetAddress,
-                obscure: false,
-                iconData: Icons.location_city_rounded,
-              ),
-              LoginTextField(
-                title: "Postal Code",
-                type: TextInputType.number,
-                obscure: false,
-                iconData: Icons.location_on_rounded,
-              ),
-              LoginTextField(
-                title: "Recipient Phone Number",
-                type: TextInputType.phone,
-                obscure: false,
-                iconData: Icons.phone_in_talk_rounded,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: TotalPriceNew(
-                  titleText: "Total Price:",
-                  totalPrice: "30.000",
-                  route: "/payment",
-                ),
-              ),
-            ],
-          )
+          LoginTextField(
+            title: "Full Name",
+            type: TextInputType.name,
+            obscure: false,
+            iconData: Icons.person_rounded,
+          ),
+          LoginTextField(
+            title: "KTP Number",
+            type: TextInputType.number,
+            obscure: false,
+            iconData: Icons.library_books_rounded,
+          ),
+          LoginTextField(
+            title: "KK Number",
+            type: TextInputType.number,
+            obscure: false,
+            iconData: Icons.library_books_rounded,
+          ),
+          LoginTextField(
+            title: "Shipping Address",
+            type: TextInputType.streetAddress,
+            obscure: false,
+            iconData: Icons.location_city_rounded,
+          ),
+          LoginTextField(
+            title: "Postal Code",
+            type: TextInputType.number,
+            obscure: false,
+            iconData: Icons.location_on_rounded,
+          ),
+          LoginTextField(
+            title: "Recipient Phone Number",
+            type: TextInputType.phone,
+            obscure: false,
+            iconData: Icons.phone_in_talk_rounded,
+          ),
+          TotalPriceNew(
+            titleText: "Total Price:",
+            totalPrice: "30.000",
+            routeNext: "/payment",
+            myColor: primary1,
+          ),
         ],
       ),
     );

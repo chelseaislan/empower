@@ -23,34 +23,28 @@ class ChooseNumber extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              titleContainer(),
-              timeContainer(),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    numberSelect("0814 1416 9420", true),
-                    numberSelect("0814 2404 5366", false),
-                    numberSelect("0814 3205 7421", false),
-                    numberSelect("0814 1384 1098", false),
-                    numberSelect("0814 1098 6547", false),
-                    numberSelect("0814 8310 1233", false),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: TotalPriceNew(
-                  titleText: "Total Price:",
-                  totalPrice: "30.000",
-                  route: "/shipping",
-                ),
-              ),
-            ],
-          )
+          titleContainer(),
+          timeContainer(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                numberSelect("0814 1416 9420", true),
+                numberSelect("0814 2404 5366", false),
+                numberSelect("0814 3205 7421", false),
+                numberSelect("0814 1384 1098", false),
+                numberSelect("0814 1098 6547", false),
+                numberSelect("0814 8310 1233", false),
+              ],
+            ),
+          ),
+          TotalPriceNew(
+            titleText: "Total Price:",
+            totalPrice: "30.000",
+            routeNext: "/shipping",
+            myColor: primary1,
+          ),
         ],
       ),
     );
@@ -95,6 +89,7 @@ class ChooseNumber extends StatelessWidget {
 
   Container timeContainer() {
     return Container(
+      alignment: Alignment.center,
       padding: EdgeInsets.only(top: 10, bottom: 20),
       child: Text(
         "05:00",

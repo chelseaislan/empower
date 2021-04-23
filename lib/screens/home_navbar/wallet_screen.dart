@@ -161,7 +161,7 @@ class WalletScreen extends StatelessWidget {
             height: 45,
             margin: EdgeInsets.symmetric(vertical: 10),
             child: OutlineCircularButton(
-              iconData: Icons.arrow_circle_up_rounded,
+              iconData: Icons.add_circle_rounded,
               labelText: "Top-up Balance",
               route: "/add_balance",
               myColor: appBarColor,
