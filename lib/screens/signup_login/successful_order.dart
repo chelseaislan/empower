@@ -65,7 +65,7 @@ class SuccessfulOrder extends StatelessWidget {
                         ),
                         orderDetailContainer(
                           "Total Payment",
-                          "Rp30.000",
+                          "Rp30",
                         ),
                         orderDetailContainer(
                           "Delivery Service",

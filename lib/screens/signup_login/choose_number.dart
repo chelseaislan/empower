@@ -1,8 +1,22 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class ChooseNumber extends StatelessWidget {
+class ChooseNumber extends StatefulWidget {
+  @override
+  _ChooseNumberState createState() => _ChooseNumberState();
+}
+
+class _ChooseNumberState extends State<ChooseNumber> {
+  int _cardId = 0;
+  int _price = 0;
+  bool _option1 = false,
+      _option2 = false,
+      _option3 = false,
+      _option4 = false,
+      _option5 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +42,84 @@ class ChooseNumber extends StatelessWidget {
               titleContainer(),
               timeContainer(),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    numberSelect("0814 1416 9420", true),
-                    numberSelect("0814 2404 5366", false),
-                    numberSelect("0814 3205 7421", false),
-                    numberSelect("0814 1384 1098", false),
-                    numberSelect("0814 1098 6547", false),
+                    ProductContainer(
+                      iconData: Icons.settings_phone_rounded,
+                      iconColor: primary1,
+                      shadowColor: _cardId == 1 ? primary1 : lightGrey2,
+                      onItemTap: () {
+                        setState(() {
+                          _option1 = !_option1;
+                          _cardId = _option1 ? 1 : 0;
+                          _price = _option1 ? 30 : 0;
+                        });
+                      },
+                      title: "0814 8468 1083",
+                      subtitle: "Card active period 60 days",
+                      price: "Rp30",
+                    ),
+                    ProductContainer(
+                      iconData: Icons.settings_phone_rounded,
+                      iconColor: primary1,
+                      shadowColor: _cardId == 2 ? primary1 : lightGrey2,
+                      onItemTap: () {
+                        setState(() {
+                          _option2 = !_option2;
+                          _cardId = _option2 ? 2 : 0;
+                          _price = _option2 ? 30 : 0;
+                        });
+                      },
+                      title: "0814 8468 1084",
+                      subtitle: "Card active period 60 days",
+                      price: "Rp30",
+                    ),
+                    ProductContainer(
+                      iconData: Icons.settings_phone_rounded,
+                      iconColor: primary1,
+                      shadowColor: _cardId == 3 ? primary1 : lightGrey2,
+                      onItemTap: () {
+                        setState(() {
+                          _option3 = !_option3;
+                          _cardId = _option3 ? 3 : 0;
+                          _price = _option3 ? 30 : 0;
+                        });
+                      },
+                      title: "0814 8468 1085",
+                      subtitle: "Card active period 60 days",
+                      price: "Rp30",
+                    ),
+                    ProductContainer(
+                      iconData: Icons.settings_phone_rounded,
+                      iconColor: primary1,
+                      shadowColor: _cardId == 4 ? primary1 : lightGrey2,
+                      onItemTap: () {
+                        setState(() {
+                          _option4 = !_option4;
+                          _cardId = _option4 ? 4 : 0;
+                          _price = _option4 ? 30 : 0;
+                        });
+                      },
+                      title: "0814 8468 1086",
+                      subtitle: "Card active period 60 days",
+                      price: "Rp30",
+                    ),
+                    ProductContainer(
+                      iconData: Icons.settings_phone_rounded,
+                      iconColor: primary1,
+                      shadowColor: _cardId == 5 ? primary1 : lightGrey2,
+                      onItemTap: () {
+                        setState(() {
+                          _option5 = !_option5;
+                          _cardId = _option5 ? 5 : 0;
+                          _price = _option5 ? 30 : 0;
+                        });
+                      },
+                      title: "0814 8468 1087",
+                      subtitle: "Card active period 60 days",
+                      price: "Rp30",
+                    ),
                   ],
                 ),
               ),
@@ -47,48 +130,13 @@ class ChooseNumber extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: TotalPriceNew(
               titleText: "Total Price:",
-              totalPrice: "30.000",
+              totalPrice: NumberFormat.currency(
+                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                  .format(_price),
               routeNext: "/shipping",
               myColor: primary1,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Container numberSelect(phoneNum, visibleStatus) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 2,
-              spreadRadius: 1,
-              color: primary1,
-            )
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            phoneNum,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: secondBlack,
-            ),
-          ),
-          Visibility(
-            visible: visibleStatus,
-            child: Icon(
-              Icons.check_circle_rounded,
-              color: primary1,
-            ),
-          )
         ],
       ),
     );

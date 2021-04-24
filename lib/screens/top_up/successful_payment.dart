@@ -64,13 +64,13 @@ class SuccessPayment extends StatelessWidget {
                         ),
                         orderDetailContainer(
                           "Total Payment",
-                          "Rp50.000",
+                          "Rp50",
                         ),
                         Container(
                           height: 45,
                           margin: EdgeInsets.symmetric(vertical: 10),
                           child: FilledCircularButton(
-                            iconData: Icons.local_offer_rounded,
+                            iconData: Icons.home_rounded,
                             labelText: "Go to Dashboard",
                             route: "/navbar",
                           ),

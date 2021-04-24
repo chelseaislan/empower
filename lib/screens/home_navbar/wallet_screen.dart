@@ -41,9 +41,9 @@ class WalletScreen extends StatelessWidget {
                 iconData: Icons.phonelink_ring_rounded,
                 iconColor: primary1,
                 shadowColor: lightGrey2,
-                title: "Pulsa 15.000",
+                title: "Pulsa 15K",
                 subtitle: "22 April 2021",
-                price: "Rp15.000",
+                price: "Rp15",
               ),
               ProductContainer(
                 iconData: Icons.language_rounded,
@@ -51,7 +51,7 @@ class WalletScreen extends StatelessWidget {
                 shadowColor: lightGrey2,
                 title: "Friendly Package",
                 subtitle: "22 April 2021",
-                price: "Rp50.000",
+                price: "Rp50",
               ),
               ProductContainer(
                 iconData: Icons.language_rounded,
@@ -59,15 +59,15 @@ class WalletScreen extends StatelessWidget {
                 shadowColor: lightGrey2,
                 title: "PWR10",
                 subtitle: "07 April 2021",
-                price: "Rp20.000",
+                price: "Rp20",
               ),
               ProductContainer(
                 iconData: Icons.phonelink_ring_rounded,
                 iconColor: primary1,
                 shadowColor: lightGrey2,
-                title: "Pulsa 15.000",
+                title: "Pulsa 15K",
                 subtitle: "21 March 2021",
-                price: "Rp15.000",
+                price: "Rp15",
               ),
               ProductContainer(
                 iconData: Icons.add_chart_rounded,
@@ -75,7 +75,7 @@ class WalletScreen extends StatelessWidget {
                 shadowColor: lightGrey2,
                 title: "GitHub Topping",
                 subtitle: "20 March 2021",
-                price: "Rp10.000",
+                price: "Rp10",
               ),
               ProductContainer(
                 iconData: Icons.add_chart_rounded,
@@ -83,7 +83,7 @@ class WalletScreen extends StatelessWidget {
                 shadowColor: lightGrey2,
                 title: "Reddit Topping",
                 subtitle: "12 March 2021",
-                price: "Rp10.000",
+                price: "Rp10",
               ),
               ProductContainer(
                 iconData: Icons.language_rounded,
@@ -117,7 +117,7 @@ class WalletScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Rp70.000",
+            "Rp70",
             style: TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.w600,

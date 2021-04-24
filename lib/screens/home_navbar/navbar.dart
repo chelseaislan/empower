@@ -48,7 +48,7 @@ class _HomeNavBarState extends State<HomeNavBar> {
           color: lightGrey2,
         ),
         items: [
-          navbarItems(Icons.local_offer_rounded, "Offers"),
+          navbarItems(Icons.home_rounded, "Home"),
           navbarItems(Icons.insert_chart_outlined_rounded, "Usage"),
           navbarItems(Icons.account_balance_wallet_rounded, "Balance"),
           navbarItems(Icons.person_rounded, "Profile"),

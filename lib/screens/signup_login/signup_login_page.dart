@@ -8,6 +8,17 @@ class SignupLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primary1,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.info_rounded, color: white),
+            tooltip: "About",
+          ),
+        ],
+      ),
       body: ListView(
         children: [
           headerContainer(),
@@ -124,13 +135,13 @@ class SignupLogin extends StatelessWidget {
 
   Container headerContainer() {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 80, 20, 20),
-      height: 200,
+      padding: EdgeInsets.fromLTRB(20, 40, 20, 10),
+      height: 160,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [primary1, primary2],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
       child: Column(

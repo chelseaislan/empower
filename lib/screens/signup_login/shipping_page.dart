@@ -62,7 +62,7 @@ class Shipping extends StatelessWidget {
           ),
           TotalPriceNew(
             titleText: "Total Price:",
-            totalPrice: "30.000",
+            totalPrice: "Rp30",
             routeNext: "/payment",
             myColor: primary1,
           ),

@@ -1,8 +1,10 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/icons_container.dart';
+import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
 import 'package:flutter/material.dart';
+import 'package:group_button/group_button.dart';
 
 class AddTopping extends StatelessWidget {
   @override
@@ -31,6 +33,7 @@ class AddTopping extends StatelessWidget {
                 subtitle:
                     "You can buy toppings only for the applications that you know and love.",
               ),
+              TextStyleOne(title: "Available toppings:"),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
@@ -60,6 +63,36 @@ class AddTopping extends StatelessWidget {
                       ],
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 20),
+              TextStyleOne(title: "Select topping size:"),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                child: GroupButton(
+                  isRadio: true,
+                  spacing: 10,
+                  buttons: ["500MB", "1GB", "2GB", "5GB"],
+                  unselectedTextStyle: TextStyle(
+                      fontWeight: FontWeight.w400, color: secondBlack),
+                  selectedColor: primary1,
+                  onSelected: (index, isSelected) =>
+                      print('$index button is selected'),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextStyleOne(title: "Select active period:"),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                child: GroupButton(
+                  isRadio: true,
+                  spacing: 10,
+                  buttons: ["1 day", "3 days", "7 days", "15 days"],
+                  unselectedTextStyle: TextStyle(
+                      fontWeight: FontWeight.w400, color: secondBlack),
+                  selectedColor: primary1,
+                  onSelected: (index, isSelected) =>
+                      print('$index button is selected'),
                 ),
               ),
               SizedBox(height: 115),

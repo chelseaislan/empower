@@ -35,9 +35,9 @@ class UsageScreen extends StatelessWidget {
           usageContainer(),
           TextStyleOne(title: "Your package details"),
           indicatorContainer(
-              context, Icons.language_rounded, "Data", "7.54", "GB", 0.6),
+              context, Icons.language_rounded, "Data", "0", "GB", 0),
           indicatorContainer(
-              context, Icons.add_chart_rounded, "Topping", "1.13", "GB", 0.1),
+              context, Icons.add_chart_rounded, "Topping", "0", "GB", 0),
           indicatorContainer(context, Icons.phone_callback_rounded, "Phone",
               "0", "minutes", 0),
           AppVerContainer(),
@@ -48,8 +48,7 @@ class UsageScreen extends StatelessWidget {
   }
 
   Container indicatorContainer(
-      BuildContext context, icon, title, number, type, remaining) {
-    double indicatorWidth = MediaQuery.of(context).size.width;
+      BuildContext context, icon, title, number, type, double remaining) {
     return Container(
       margin: EdgeInsets.fromLTRB(20, 5, 20, 10),
       padding: EdgeInsets.all(15),
@@ -101,22 +100,26 @@ class UsageScreen extends StatelessWidget {
           SizedBox(height: 15),
           Stack(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: lightGrey2,
-                  borderRadius: BorderRadius.circular(30),
+              FractionallySizedBox(
+                widthFactor: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: lightGrey2,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  height: 10,
                 ),
-                width: indicatorWidth,
-                height: 10,
               ),
-              Container(
-                // this container
-                decoration: BoxDecoration(
-                  color: primary1,
-                  borderRadius: BorderRadius.circular(30),
+              FractionallySizedBox(
+                widthFactor: remaining,
+                child: Container(
+                  // this container
+                  decoration: BoxDecoration(
+                    color: primary1,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  height: 10,
                 ),
-                width: indicatorWidth * remaining,
-                height: 10,
               ),
             ],
           ),
@@ -141,7 +144,7 @@ class UsageScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Friendly Package",
+            "No Data Available",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -150,7 +153,7 @@ class UsageScreen extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            "12GB, 30 days until 22 May 2021 at 12:29",
+            "Top up your data to enjoy Internet!",
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,

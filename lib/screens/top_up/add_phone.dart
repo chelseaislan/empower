@@ -12,7 +12,7 @@ class AddPhone extends StatefulWidget {
 }
 
 class _AddPhoneState extends State<AddPhone> {
-  int _value = 0;
+  int _price = 0;
   bool _option1 = false, _option2 = false, _option3 = false, _option4 = false;
   @override
   Widget build(BuildContext context) {
@@ -48,58 +48,58 @@ class _AddPhoneState extends State<AddPhone> {
                   ProductContainer(
                     iconData: Icons.phone_callback_rounded,
                     iconColor: primary1,
-                    shadowColor: _option1 ? primary1 : lightGrey2,
+                    shadowColor: _price == 6 ? primary1 : lightGrey2,
                     onItemTap: () {
                       setState(() {
                         _option1 = !_option1;
-                        _value = _option1 ? 6000 : 0;
+                        _price = _option1 ? 6 : 0;
                       });
                     },
                     title: "All-net Mini",
                     subtitle: "Free 25 minutes for 1 day",
-                    price: "Rp6.000",
+                    price: "Rp6",
                   ),
                   ProductContainer(
                     iconData: Icons.phone_callback_rounded,
                     iconColor: primary1,
-                    shadowColor: _option2 ? primary1 : lightGrey2,
+                    shadowColor: _price == 12 ? primary1 : lightGrey2,
                     onItemTap: () {
                       setState(() {
                         _option2 = !_option2;
-                        _value = _option2 ? 12000 : 0;
+                        _price = _option2 ? 12 : 0;
                       });
                     },
                     title: "All-net Basic",
                     subtitle: "Free 50 minutes for 3 days",
-                    price: "Rp12.000",
+                    price: "Rp12",
                   ),
                   ProductContainer(
                     iconData: Icons.phone_callback_rounded,
                     iconColor: primary1,
-                    shadowColor: _option3 ? primary1 : lightGrey2,
+                    shadowColor: _price == 17 ? primary1 : lightGrey2,
                     onItemTap: () {
                       setState(() {
                         _option3 = !_option3;
-                        _value = _option3 ? 17000 : 0;
+                        _price = _option3 ? 17 : 0;
                       });
                     },
                     title: "All-net Pro",
                     subtitle: "Free 70 minutes for 7 days",
-                    price: "Rp17.000",
+                    price: "Rp17",
                   ),
                   ProductContainer(
                     iconData: Icons.phone_callback_rounded,
                     iconColor: primary1,
-                    shadowColor: _option4 ? primary1 : lightGrey2,
+                    shadowColor: _price == 50 ? primary1 : lightGrey2,
                     onItemTap: () {
                       setState(() {
                         _option4 = !_option4;
-                        _value = _option4 ? 50000 : 0;
+                        _price = _option4 ? 50 : 0;
                       });
                     },
                     title: "All-net Super",
                     subtitle: "Free 200 minutes for 30 days",
-                    price: "Rp50.000",
+                    price: "Rp50",
                   ),
                 ],
               ),
@@ -111,7 +111,7 @@ class _AddPhoneState extends State<AddPhone> {
             child: TotalPriceNew(
               totalPrice: NumberFormat.currency(
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(_value),
+                  .format(_price),
               titleText: "Total Price:",
               routeNext: "/add_payment",
               myColor: appBarColor,

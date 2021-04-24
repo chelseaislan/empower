@@ -131,13 +131,13 @@ class OfferScreen extends StatelessWidget {
             ),
             child: IntrinsicHeight(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     children: [
                       Icon(Icons.language_rounded, color: primary1),
                       SizedBox(width: 5),
-                      Text("7.54 GB"),
+                      Text("0 GB"),
                     ],
                   ),
                   VerticalDivider(
@@ -148,7 +148,7 @@ class OfferScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.add_chart_rounded, color: primary1),
                       SizedBox(width: 5),
-                      Text("1.13 GB"),
+                      Text("0 GB"),
                     ],
                   ),
                   VerticalDivider(
