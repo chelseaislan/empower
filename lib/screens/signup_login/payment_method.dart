@@ -2,7 +2,6 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/payment_options.dart';
 import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Payment extends StatelessWidget {
   @override
@@ -29,37 +28,37 @@ class Payment extends StatelessWidget {
             child: Column(
               children: [
                 PaymentOptions(
-                  imagePath: "images/bca.svg",
+                  imagePath: "images/bca.png",
                   bankName: "Bank BCA",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/bni.svg",
+                  imagePath: "images/bni.png",
                   bankName: "Bank BNI",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/mandiri.svg",
+                  imagePath: "images/mandiri.png",
                   bankName: "Bank Mandiri",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/permata.svg",
+                  imagePath: "images/permata.png",
                   bankName: "Bank Permata",
                   visibleStatus: true,
                   myColor: primary1,
                 ),
                 PaymentOptions(
-                  imagePath: "images/jago.svg",
+                  imagePath: "images/jago.png",
                   bankName: "Bank Jago",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/card.svg",
+                  imagePath: "images/card.png",
                   bankName: "Visa/Mastercard",
                   visibleStatus: false,
                   myColor: lightGrey2,

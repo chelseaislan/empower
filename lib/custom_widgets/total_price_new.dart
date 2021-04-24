@@ -46,7 +46,7 @@ class TotalPriceNew extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Rp$totalPrice",
+                    totalPrice,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -58,7 +58,7 @@ class TotalPriceNew extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(routeNext),
+            onTap: () => Navigator.of(context).pushNamed(routeNext, ),
             child: Container(
               margin: EdgeInsets.only(left: 10),
               padding: EdgeInsets.all(20),

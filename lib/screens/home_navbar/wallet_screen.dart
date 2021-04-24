@@ -1,6 +1,8 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
 
@@ -35,93 +37,68 @@ class WalletScreen extends StatelessWidget {
           TextStyleOne(title: "Your latest transactions"),
           Column(
             children: [
-              historyContainer(
-                Icons.phone_in_talk_rounded,
-                "All-net Basic",
-                "22 April 2021",
-                "Rp15.000",
+              ProductContainer(
+                iconData: Icons.phonelink_ring_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "Pulsa 15.000",
+                subtitle: "22 April 2021",
+                price: "Rp15.000",
               ),
-              historyContainer(
-                Icons.phone_android_rounded,
-                "Friendly Package",
-                "22 April 2021",
-                "Rp50.000",
+              ProductContainer(
+                iconData: Icons.language_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "Friendly Package",
+                subtitle: "22 April 2021",
+                price: "Rp50.000",
               ),
-              historyContainer(
-                Icons.phone_android_rounded,
-                "PWR10",
-                "07 April 2021",
-                "Rp20.000",
+              ProductContainer(
+                iconData: Icons.language_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "PWR10",
+                subtitle: "07 April 2021",
+                price: "Rp20.000",
               ),
-              historyContainer(
-                Icons.phone_in_talk_rounded,
-                "All-net Basic",
-                "21 March 2021",
-                "Rp15.000",
+              ProductContainer(
+                iconData: Icons.phonelink_ring_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "Pulsa 15.000",
+                subtitle: "21 March 2021",
+                price: "Rp15.000",
+              ),
+              ProductContainer(
+                iconData: Icons.add_chart_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "GitHub Topping",
+                subtitle: "20 March 2021",
+                price: "Rp10.000",
+              ),
+              ProductContainer(
+                iconData: Icons.add_chart_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "Reddit Topping",
+                subtitle: "12 March 2021",
+                price: "Rp10.000",
+              ),
+              ProductContainer(
+                iconData: Icons.language_rounded,
+                iconColor: primary1,
+                shadowColor: lightGrey2,
+                title: "6 Month Bonus",
+                subtitle: "1 March 2021",
+                price: "Rp0",
               ),
             ],
           ),
           AppVerContainer()
         ],
       ),
-    );
-  }
-
-  Container historyContainer(icon, title, date, price) {
-    return Container(
-      decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 5,
-              spreadRadius: 1,
-              color: lightGrey2,
-            ),
-          ]),
-      margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-      padding: EdgeInsets.all(15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(icon),
-              SizedBox(width: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: secondBlack,
-                    ),
-                  ),
-                  SizedBox(height: 3),
-                  Text(
-                    date,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: secondBlack,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Text(
-            price,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: primary1,
-            ),
-          ),
-        ],
-      ),
+      floatingActionButton: LiveChat(),
     );
   }
 

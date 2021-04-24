@@ -34,37 +34,37 @@ class AddPayment extends StatelessWidget {
             child: Column(
               children: [
                 PaymentOptions(
-                  imagePath: "images/bca.svg",
+                  imagePath: "images/bca.png",
                   bankName: "Bank BCA",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/bni.svg",
+                  imagePath: "images/bni.png",
                   bankName: "Bank BNI",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/mandiri.svg",
+                  imagePath: "images/mandiri.png",
                   bankName: "Bank Mandiri",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/permata.svg",
+                  imagePath: "images/permata.png",
                   bankName: "Bank Permata",
                   visibleStatus: false,
                   myColor: lightGrey2,
                 ),
                 PaymentOptions(
-                  imagePath: "images/jago.svg",
+                  imagePath: "images/jago.png",
                   bankName: "Bank Jago",
                   visibleStatus: true,
-                  myColor: appBarColor,
+                  myColor: primary1,
                 ),
                 PaymentOptions(
-                  imagePath: "images/card.svg",
+                  imagePath: "images/card.png",
                   bankName: "Visa/Mastercard",
                   visibleStatus: false,
                   myColor: lightGrey2,
@@ -75,7 +75,7 @@ class AddPayment extends StatelessWidget {
           TotalPriceNew(
             titleText: "Total Price:",
             totalPrice: "0",
-            routeNext: "/belum_ada",
+            routeNext: "/success_payment",
             myColor: appBarColor,
           )
         ],

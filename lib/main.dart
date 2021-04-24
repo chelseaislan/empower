@@ -12,6 +12,7 @@ import 'package:fake_mpwr/screens/top_up/add_data.dart';
 import 'package:fake_mpwr/screens/top_up/add_payment.dart';
 import 'package:fake_mpwr/screens/top_up/add_phone.dart';
 import 'package:fake_mpwr/screens/top_up/add_topping.dart';
+import 'package:fake_mpwr/screens/top_up/successful_payment.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         "/add_phone": (context) => new AddPhone(),
         "/add_balance": (context) => new AddBalance(),
         "/add_payment": (context) => new AddPayment(),
+        "/success_payment": (context) => new SuccessPayment(),
       },
     );
   }

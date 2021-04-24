@@ -1,6 +1,5 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentOptions extends StatelessWidget {
   final String bankName;
@@ -25,7 +24,7 @@ class PaymentOptions extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              blurRadius: 2,
+              blurRadius: 5,
               spreadRadius: 1,
               color: myColor,
             )
@@ -35,9 +34,9 @@ class PaymentOptions extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgPicture.asset(
+              Image.asset(
                 imagePath,
-                width: MediaQuery.of(context).size.width * 0.15,
+                width: MediaQuery.of(context).size.width * 0.1,
               ),
               SizedBox(width: 15),
               Column(

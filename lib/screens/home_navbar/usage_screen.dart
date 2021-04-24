@@ -1,5 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,7 @@ class UsageScreen extends StatelessWidget {
           AppVerContainer(),
         ],
       ),
+      floatingActionButton: LiveChat(),
     );
   }
 

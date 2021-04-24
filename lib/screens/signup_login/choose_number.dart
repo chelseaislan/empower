@@ -21,29 +21,36 @@ class ChooseNumber extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          titleContainer(),
-          timeContainer(),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                numberSelect("0814 1416 9420", true),
-                numberSelect("0814 2404 5366", false),
-                numberSelect("0814 3205 7421", false),
-                numberSelect("0814 1384 1098", false),
-                numberSelect("0814 1098 6547", false),
-                numberSelect("0814 8310 1233", false),
-              ],
-            ),
+          ListView(
+            children: [
+              titleContainer(),
+              timeContainer(),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    numberSelect("0814 1416 9420", true),
+                    numberSelect("0814 2404 5366", false),
+                    numberSelect("0814 3205 7421", false),
+                    numberSelect("0814 1384 1098", false),
+                    numberSelect("0814 1098 6547", false),
+                  ],
+                ),
+              ),
+              SizedBox(height: 115),
+            ],
           ),
-          TotalPriceNew(
-            titleText: "Total Price:",
-            totalPrice: "30.000",
-            routeNext: "/shipping",
-            myColor: primary1,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: TotalPriceNew(
+              titleText: "Total Price:",
+              totalPrice: "30.000",
+              routeNext: "/shipping",
+              myColor: primary1,
+            ),
           ),
         ],
       ),

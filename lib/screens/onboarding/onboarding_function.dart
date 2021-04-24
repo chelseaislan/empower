@@ -21,18 +21,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
     SliderPage(
       sliderTitle: "Blazing Fast Internet Speeds",
       sliderDesc: "Enjoy gaming all day with low latency and amazing speed!",
-      sliderImg: "images/player.svg",
+      sliderImg: "images/player.png",
     ),
     SliderPage(
       sliderTitle: "Make it More Personal",
       sliderDesc:
           "Add various toppings on top of main quota to enjoy social media!",
-      sliderImg: "images/mobile.svg",
+      sliderImg: "images/mobile.png",
     ),
     SliderPage(
       sliderTitle: "Are you ready?",
       sliderDesc: "Continue to register your new card!",
-      sliderImg: "images/bike.svg",
+      sliderImg: "images/bike.png",
     ),
   ];
 

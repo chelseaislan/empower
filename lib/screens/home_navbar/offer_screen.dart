@@ -1,5 +1,8 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/ad_container.dart';
 import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/offer_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
 
@@ -27,30 +30,64 @@ class OfferScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          headerContainer(),
-          TextStyleOne(title: "Offers from MPWR"),
-          // ListView(
-          //   scrollDirection: Axis.horizontal,
-          //   children: [
-          //     Container(
-          //       width: 160,
-          //       color: Colors.red,
-          //     ),
-          //     Container(
-          //       width: 160,
-          //       color: Colors.green,
-          //     ),
-          //     Container(
-          //       width: 160,
-          //       color: Colors.blue,
-          //     ),
-          //   ],
-          // ),
-          AppVerContainer(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            headerContainer(),
+            Container(
+                margin: EdgeInsets.only(bottom: 5),
+                alignment: Alignment.centerLeft,
+                child: TextStyleOne(title: "Offers from our partners")),
+            SizedBox(
+              height: 80,
+              child: Container(
+                padding: EdgeInsets.only(left: 10),
+                child: ListView(
+                  physics: ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    AdContainer(adImage: "images/ad1.jpg"),
+                    AdContainer(adImage: "images/ad2.jpg"),
+                    AdContainer(adImage: "images/ad3.jpg"),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(top: 15),
+                alignment: Alignment.centerLeft,
+                child: TextStyleOne(title: "Latest from MPWR")),
+            Column(
+              children: [
+                OfferContainer(
+                  myColor: primary1,
+                  littleText: "Ramadan",
+                  image: "images/bike.png",
+                  bigText:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                ),
+                OfferContainer(
+                  myColor: Colors.teal[800],
+                  littleText: "Discover",
+                  image: "images/bike.png",
+                  bigText:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                ),
+                OfferContainer(
+                  myColor: Colors.blueGrey[800],
+                  littleText: "Referrals",
+                  image: "images/bike.png",
+                  bigText:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                ),
+              ],
+            ),
+            AppVerContainer(),
+          ],
+        ),
       ),
+      floatingActionButton: LiveChat(),
     );
   }
 

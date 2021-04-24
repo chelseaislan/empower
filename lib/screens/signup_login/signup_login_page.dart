@@ -25,6 +25,45 @@ class SignupLogin extends StatelessWidget {
             iconData: Icons.vpn_key_rounded,
           ),
           Container(
+            margin: EdgeInsets.fromLTRB(50, 20, 50, 10),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 5,
+                  spreadRadius: 1,
+                  color: lightGrey2,
+                )
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.crop_square_rounded,
+                      size: 40,
+                      color: lightGrey2,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "I'm not a robot",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: secondBlack,
+                      ),
+                    ),
+                  ],
+                ),
+                Icon(Icons.rotate_left_rounded),
+              ],
+            ),
+          ),
+          Container(
             padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
             child: Row(
               children: [
@@ -43,7 +82,7 @@ class SignupLogin extends StatelessWidget {
   Container shippingContainer(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.only(top: 10, bottom: 50),
       height: 45,
       child: OutlineCircularButton(
         iconData: Icons.local_shipping_rounded,
