@@ -15,6 +15,7 @@ class AddPhone extends StatefulWidget {
 
 class _AddPhoneState extends State<AddPhone> {
   int _price = 0;
+  String _packageId = "Not Selected";
   bool _option1 = false, _option2 = false, _option3 = false, _option4 = false;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _AddPhoneState extends State<AddPhone> {
                 title: "Wanna save some pulsa to call?",
                 subtitle:
                     "Add a phone package to freely call to ALL local operators!",
-                    textColor: white,
+                textColor: white,
               ),
               TextStyleOne(
                 title: "Available packages:",
@@ -43,6 +44,7 @@ class _AddPhoneState extends State<AddPhone> {
                     onItemTap: () {
                       setState(() {
                         _option1 = !_option1;
+                        _packageId = _option1 ? "All-net Mini" : "Not Selected";
                         _price = _option1 ? 6 : 0;
                       });
                     },
@@ -57,6 +59,8 @@ class _AddPhoneState extends State<AddPhone> {
                     onItemTap: () {
                       setState(() {
                         _option2 = !_option2;
+                        _packageId =
+                            _option2 ? "All-net Basic" : "Not Selected";
                         _price = _option2 ? 12 : 0;
                       });
                     },
@@ -71,6 +75,7 @@ class _AddPhoneState extends State<AddPhone> {
                     onItemTap: () {
                       setState(() {
                         _option3 = !_option3;
+                        _packageId = _option3 ? "All-net Pro" : "Not Selected";
                         _price = _option3 ? 17 : 0;
                       });
                     },
@@ -85,6 +90,8 @@ class _AddPhoneState extends State<AddPhone> {
                     onItemTap: () {
                       setState(() {
                         _option4 = !_option4;
+                        _packageId =
+                            _option4 ? "All-net Super" : "Not Selected";
                         _price = _option4 ? 50 : 0;
                       });
                     },
@@ -94,20 +101,11 @@ class _AddPhoneState extends State<AddPhone> {
                   ),
                 ],
               ),
+              SelectedPackageContainer(packageId: _packageId),
               SizedBox(height: 115),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TotalPriceNew(
-              totalPrice: NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(_price),
-              titleText: "Total Price:",
-              myColor: appBarColor,
-              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
-            ),
-          ),
+          TotalPriceContainer(price: _price, packageId: _packageId),
         ],
       ),
     );

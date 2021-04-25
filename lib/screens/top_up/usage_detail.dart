@@ -3,6 +3,7 @@ import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/usage_detail_container.dart';
 import 'package:flutter/material.dart';
 
+// TODO for Topping and Phone, also extract from Data section
 class UsageDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

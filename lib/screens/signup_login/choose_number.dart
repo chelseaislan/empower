@@ -2,6 +2,8 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
+import 'package:fake_mpwr/screens/signup_login/shipping_page.dart';
+import 'package:fake_mpwr/screens/top_up/add_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -11,8 +13,8 @@ class ChooseNumber extends StatefulWidget {
 }
 
 class _ChooseNumberState extends State<ChooseNumber> {
-  int _cardId = 0;
   int _price = 0;
+  String _newPhoneId = "Not Selected";
   bool _option1 = false,
       _option2 = false,
       _option3 = false,
@@ -67,11 +69,14 @@ class _ChooseNumberState extends State<ChooseNumber> {
                     ProductContainer(
                       iconData: Icons.settings_phone_rounded,
                       iconColor: primary1,
-                      shadowColor: _cardId == 1 ? primary1 : lightGrey2,
+                      shadowColor: _newPhoneId == "0814 8468 1083"
+                          ? primary1
+                          : lightGrey2,
                       onItemTap: () {
                         setState(() {
                           _option1 = !_option1;
-                          _cardId = _option1 ? 1 : 0;
+                          _newPhoneId =
+                              _option1 ? "0814 8468 1083" : _newPhoneId;
                           _price = _option1 ? 30 : 0;
                         });
                       },
@@ -82,11 +87,14 @@ class _ChooseNumberState extends State<ChooseNumber> {
                     ProductContainer(
                       iconData: Icons.settings_phone_rounded,
                       iconColor: primary1,
-                      shadowColor: _cardId == 2 ? primary1 : lightGrey2,
+                      shadowColor: _newPhoneId == "0814 8468 1084"
+                          ? primary1
+                          : lightGrey2,
                       onItemTap: () {
                         setState(() {
                           _option2 = !_option2;
-                          _cardId = _option2 ? 2 : 0;
+                          _newPhoneId =
+                              _option2 ? "0814 8468 1084" : _newPhoneId;
                           _price = _option2 ? 30 : 0;
                         });
                       },
@@ -97,11 +105,14 @@ class _ChooseNumberState extends State<ChooseNumber> {
                     ProductContainer(
                       iconData: Icons.settings_phone_rounded,
                       iconColor: primary1,
-                      shadowColor: _cardId == 3 ? primary1 : lightGrey2,
+                      shadowColor: _newPhoneId == "0814 8468 1085"
+                          ? primary1
+                          : lightGrey2,
                       onItemTap: () {
                         setState(() {
                           _option3 = !_option3;
-                          _cardId = _option3 ? 3 : 0;
+                          _newPhoneId =
+                              _option3 ? "0814 8468 1085" : _newPhoneId;
                           _price = _option3 ? 30 : 0;
                         });
                       },
@@ -112,11 +123,14 @@ class _ChooseNumberState extends State<ChooseNumber> {
                     ProductContainer(
                       iconData: Icons.settings_phone_rounded,
                       iconColor: primary1,
-                      shadowColor: _cardId == 4 ? primary1 : lightGrey2,
+                      shadowColor: _newPhoneId == "0814 8468 1086"
+                          ? primary1
+                          : lightGrey2,
                       onItemTap: () {
                         setState(() {
                           _option4 = !_option4;
-                          _cardId = _option4 ? 4 : 0;
+                          _newPhoneId =
+                              _option4 ? "0814 8468 1086" : _newPhoneId;
                           _price = _option4 ? 30 : 0;
                         });
                       },
@@ -127,11 +141,14 @@ class _ChooseNumberState extends State<ChooseNumber> {
                     ProductContainer(
                       iconData: Icons.settings_phone_rounded,
                       iconColor: primary1,
-                      shadowColor: _cardId == 5 ? primary1 : lightGrey2,
+                      shadowColor: _newPhoneId == "0814 8468 1087"
+                          ? primary1
+                          : lightGrey2,
                       onItemTap: () {
                         setState(() {
                           _option5 = !_option5;
-                          _cardId = _option5 ? 5 : 0;
+                          _newPhoneId =
+                              _option5 ? "0814 8468 1087" : _newPhoneId;
                           _price = _option5 ? 30 : 0;
                         });
                       },
@@ -142,18 +159,22 @@ class _ChooseNumberState extends State<ChooseNumber> {
                   ],
                 ),
               ),
+              SelectedPackageContainer(packageId: _newPhoneId),
               SizedBox(height: 115),
             ],
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: TotalPriceNew(
+              totalPrice: "Rp${_price.toString()}",
               titleText: "Total Price:",
-              totalPrice: NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(_price),
               myColor: primary1,
-              onItemTap: () => Navigator.of(context).pushNamed("/shipping"),
+              onItemTap: () {
+                var nextRoute = new MaterialPageRoute(builder: (context) {
+                  return new Shipping(value: _price, package: _newPhoneId);
+                });
+                Navigator.of(context).push(nextRoute);
+              },
             ),
           ),
         ],

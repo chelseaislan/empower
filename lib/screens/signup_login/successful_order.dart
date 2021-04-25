@@ -4,8 +4,44 @@ import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
-class SuccessfulOrder extends StatelessWidget {
+class SuccessfulOrder extends StatefulWidget {
+  final int value;
+  final String package;
+  final String bankName;
+
+  const SuccessfulOrder({Key key, this.value, this.package, this.bankName})
+      : super(key: key);
+
+  @override
+  _SuccessfulOrderState createState() => _SuccessfulOrderState();
+}
+
+class _SuccessfulOrderState extends State<SuccessfulOrder> {
+  // Show current date & time
+  String finalDate = "";
+  String finalTime = "";
+
+  void initState() {
+    super.initState();
+    getCurrentDate();
+  }
+
+  getCurrentDate() {
+    var date = new DateTime.now().toString();
+    var day = DateFormat('EEEE').format(DateTime.now());
+    var dateParse = DateTime.parse(date);
+    var formattedDate =
+        "$day, ${dateParse.day}/${dateParse.month}/${dateParse.year}";
+    var formattedTime =
+        "${dateParse.hour}:${dateParse.minute}:${dateParse.second}";
+    setState(() {
+      finalDate = formattedDate.toString();
+      finalTime = formattedTime.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -50,23 +86,23 @@ class SuccessfulOrder extends StatelessWidget {
                         ),
                         OrderDetailsContainer(
                           title: "Order Name",
-                          description: "SP 0814 0853 8485",
+                          description: "SP ${widget.package}",
                         ),
                         OrderDetailsContainer(
                           title: "Order Date",
-                          description: "Thursday, 22 April 2021",
+                          description: "$finalDate",
                         ),
                         OrderDetailsContainer(
                           title: "Order Time",
-                          description: "07:56",
+                          description: "$finalTime",
                         ),
                         OrderDetailsContainer(
                           title: "Payment Type",
-                          description: "Bank Permata",
+                          description: "${widget.bankName}",
                         ),
                         OrderDetailsContainer(
                           title: "Total Payment",
-                          description: "Rp30",
+                          description: "Rp${widget.value}",
                         ),
                         OrderDetailsContainer(
                           title: "Delivery Service",

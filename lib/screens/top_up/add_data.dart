@@ -3,8 +3,8 @@ import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
+import 'package:fake_mpwr/screens/top_up/add_payment.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class AddData extends StatefulWidget {
   @override
@@ -13,6 +13,7 @@ class AddData extends StatefulWidget {
 
 class _AddDataState extends State<AddData> {
   int _price = 0;
+  String _packageId = "Not Selected";
   bool _option1 = false,
       _option2 = false,
       _option3 = false,
@@ -46,6 +47,7 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option1 = !_option1;
+                        _packageId = _option1 ? "PWR3 (Promo)" : "Not Selected";
                         _price = _option1 ? 10 : 0;
                       });
                     },
@@ -60,6 +62,7 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option2 = !_option2;
+                        _packageId = _option2 ? "PWR5 (Promo)" : "Not Selected";
                         _price = _option2 ? 15 : 0;
                       });
                     },
@@ -74,6 +77,8 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option3 = !_option3;
+                        _packageId =
+                            _option3 ? "PWR10 (Promo)" : "Not Selected";
                         _price = _option3 ? 20 : 0;
                       });
                     },
@@ -88,6 +93,8 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option4 = !_option4;
+                        _packageId =
+                            _option4 ? "Friendly Package" : "Not Selected";
                         _price = _option4 ? 50 : 0;
                       });
                     },
@@ -102,6 +109,8 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option5 = !_option5;
+                        _packageId =
+                            _option5 ? "Buddy Package" : "Not Selected";
                         _price = _option5 ? 75 : 0;
                       });
                     },
@@ -116,6 +125,8 @@ class _AddDataState extends State<AddData> {
                     onItemTap: () {
                       setState(() {
                         _option6 = !_option6;
+                        _packageId =
+                            _option6 ? "Bestie Package" : "Not Selected";
                         _price = _option6 ? 100 : 0;
                       });
                     },
@@ -125,21 +136,68 @@ class _AddDataState extends State<AddData> {
                   ),
                 ],
               ),
+              SelectedPackageContainer(packageId: _packageId),
               SizedBox(height: 115),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TotalPriceNew(
-              totalPrice: NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(_price),
-              titleText: "Total Price:",
-              myColor: appBarColor,
-              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
-            ),
-          ),
+          TotalPriceContainer(price: _price, packageId: _packageId),
         ],
+      ),
+    );
+  }
+}
+
+class TotalPriceContainer extends StatelessWidget {
+  const TotalPriceContainer({
+    Key key,
+    @required int price,
+    @required String packageId,
+  })  : _price = price,
+        _packageId = packageId,
+        super(key: key);
+
+  final int _price;
+  final String _packageId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: TotalPriceNew(
+        totalPrice: "Rp${_price.toString()}",
+        titleText: "Total Price:",
+        myColor: appBarColor,
+        onItemTap: () {
+          var nextRoute = new MaterialPageRoute(builder: (context) {
+            return new AddPayment(value: _price, package: _packageId);
+          });
+          Navigator.of(context).push(nextRoute);
+        },
+      ),
+    );
+  }
+}
+
+class SelectedPackageContainer extends StatelessWidget {
+  const SelectedPackageContainer({
+    Key key,
+    @required String packageId,
+  })  : _packageId = packageId,
+        super(key: key);
+
+  final String _packageId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        "Selected Package: $_packageId",
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: secondBlack,
+        ),
       ),
     );
   }

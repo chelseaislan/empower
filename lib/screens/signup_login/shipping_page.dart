@@ -1,9 +1,20 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
+import 'package:fake_mpwr/screens/signup_login/payment_method.dart';
 import 'package:flutter/material.dart';
 
-class Shipping extends StatelessWidget {
+class Shipping extends StatefulWidget {
+  final int value;
+  final String package;
+
+  const Shipping({Key key, this.value, this.package}) : super(key: key);
+
+  @override
+  _ShippingState createState() => _ShippingState();
+}
+
+class _ShippingState extends State<Shipping> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,9 +77,14 @@ class Shipping extends StatelessWidget {
           ),
           TotalPriceNew(
             titleText: "Total Price:",
-            totalPrice: "Rp30",
+            totalPrice: "Rp${widget.value}",
             myColor: primary1,
-            onItemTap: () => Navigator.of(context).pushNamed("/payment"),
+            onItemTap: () {
+              var nextRoute = new MaterialPageRoute(builder: (context) {
+                return new Payment(value: widget.value, package: widget.package);
+              });
+              Navigator.of(context).push(nextRoute);
+            },
           ),
         ],
       ),
