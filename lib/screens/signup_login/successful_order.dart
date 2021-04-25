@@ -1,8 +1,9 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/complete_header.dart';
-import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SuccessfulOrder extends StatelessWidget {
   @override
@@ -43,37 +44,37 @@ class SuccessfulOrder extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 10),
-                        orderDetailContainer(
-                          "Order Number",
-                          "840285",
+                        OrderDetailsContainer(
+                          title: "Order Number",
+                          description: "840285",
                         ),
-                        orderDetailContainer(
-                          "Order Name",
-                          "SP 0814 0853 8485",
+                        OrderDetailsContainer(
+                          title: "Order Name",
+                          description: "SP 0814 0853 8485",
                         ),
-                        orderDetailContainer(
-                          "Order Date",
-                          "Thursday, 22 April 2021",
+                        OrderDetailsContainer(
+                          title: "Order Date",
+                          description: "Thursday, 22 April 2021",
                         ),
-                        orderDetailContainer(
-                          "Order Time",
-                          "07:56",
+                        OrderDetailsContainer(
+                          title: "Order Time",
+                          description: "07:56",
                         ),
-                        orderDetailContainer(
-                          "Payment Type",
-                          "Bank Permata",
+                        OrderDetailsContainer(
+                          title: "Payment Type",
+                          description: "Bank Permata",
                         ),
-                        orderDetailContainer(
-                          "Total Payment",
-                          "Rp30",
+                        OrderDetailsContainer(
+                          title: "Total Payment",
+                          description: "Rp30",
                         ),
-                        orderDetailContainer(
-                          "Delivery Service",
-                          "SiCepat",
+                        OrderDetailsContainer(
+                          title: "Delivery Service",
+                          description: "SiCepat",
                         ),
-                        orderDetailContainer(
-                          "Tracking Number",
-                          "31093103019",
+                        OrderDetailsContainer(
+                          title: "Tracking Number",
+                          description: "31093103019",
                         ),
                         Container(
                           height: 45,
@@ -81,7 +82,13 @@ class SuccessfulOrder extends StatelessWidget {
                           child: OutlineCircularButton(
                             iconData: Icons.copy_rounded,
                             labelText: "Copy Tracking Number",
-                            route: "/belum_ada",
+                            onPressed: () {
+                              Fluttertoast.showToast(
+                                msg: "Tracking Number copied.",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                              );
+                            },
                             myColor: primary1,
                           ),
                         ),
@@ -91,7 +98,12 @@ class SuccessfulOrder extends StatelessWidget {
                           child: FilledCircularButton(
                             iconData: Icons.login_rounded,
                             labelText: "Go to Login Page",
-                            route: "/login",
+                            myColor: primary1,
+                            onPressed: () async {
+                              await Navigator.of(context)
+                                  .pushNamedAndRemoveUntil(
+                                      "/login", (route) => false);
+                            },
                           ),
                         ),
                       ],
@@ -105,8 +117,19 @@ class SuccessfulOrder extends StatelessWidget {
       ),
     );
   }
+}
 
-  Container orderDetailContainer(title, description) {
+class OrderDetailsContainer extends StatelessWidget {
+  final String title;
+  final String description;
+  const OrderDetailsContainer({
+    Key key,
+    this.title,
+    this.description,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 15),
       child: Row(

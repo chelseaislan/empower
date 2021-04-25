@@ -2,7 +2,7 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -24,19 +24,7 @@ class _AddDataState extends State<AddData> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Add Data Package',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-      ),
+      appBar: NoActionsAppBar(appBarTitle: "Buy Data Package"),
       body: Stack(
         children: [
           ListView(
@@ -44,6 +32,7 @@ class _AddDataState extends State<AddData> {
               BlueHeader(
                 title: "Need to update your OS?",
                 subtitle: "Add a data package to satisfy your needs!",
+                textColor: white,
               ),
               TextStyleOne(
                 title: "Available packages:",
@@ -146,12 +135,40 @@ class _AddDataState extends State<AddData> {
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
                   .format(_price),
               titleText: "Total Price:",
-              routeNext: "/add_payment",
               myColor: appBarColor,
+              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class NoActionsAppBar extends StatelessWidget with PreferredSizeWidget {
+  final String appBarTitle;
+  const NoActionsAppBar({
+    Key key,
+    this.appBarTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: appBarColor,
+      centerTitle: true,
+      elevation: 0,
+      title: Text(
+        appBarTitle,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: white,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

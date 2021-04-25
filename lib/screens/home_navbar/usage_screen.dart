@@ -1,9 +1,11 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
-import 'package:fake_mpwr/custom_widgets/live_chat.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/containers/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:fake_mpwr/custom_widgets/usage_indicator_container.dart';
+import 'package:fake_mpwr/screens/home_navbar/offer_screen.dart';
+import 'package:fake_mpwr/screens/home_navbar/wallet_screen.dart';
 import 'package:flutter/material.dart';
 
 class UsageScreen extends StatelessWidget {
@@ -11,29 +13,66 @@ class UsageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'My Data Usage',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.mail_rounded),
-            tooltip: "Notifications",
-          ),
-        ],
-      ),
+      appBar: NavBarAppBar(appBarTitle: "My Data Usage"),
       body: ListView(
         children: [
-          usageContainer(),
+          MyBalanceContainer(
+            title: "No Data Package Available",
+            titleStyle: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: white,
+            ),
+            subtitle: "Top up your data to enjoy Internet!",
+            subStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: white,
+            ),
+            childWidget: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: OutlineCircularButton(
+                    iconData: Icons.add_circle_rounded,
+                    labelText: "Data",
+                    onPressed: () async {
+                      await Navigator.of(context).pushNamed("/add_data");
+                    },
+                    myColor: appBarColor,
+                  ),
+                ),
+                SizedBox(width: 5),
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: OutlineCircularButton(
+                    iconData: Icons.add_circle_rounded,
+                    labelText: "Topping",
+                    onPressed: () async {
+                      await Navigator.of(context).pushNamed("/add_topping");
+                    },
+                    myColor: appBarColor,
+                  ),
+                ),
+                SizedBox(width: 5),
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: OutlineCircularButton(
+                    iconData: Icons.add_circle_rounded,
+                    labelText: "Phone",
+                    onPressed: () async {
+                      await Navigator.of(context).pushNamed("/add_phone");
+                    },
+                    myColor: appBarColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
           TextStyleOne(title: "Your package details"),
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed("/usage_detail"),
@@ -67,80 +106,6 @@ class UsageScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: LiveChat(),
-    );
-  }
-
-  Container usageContainer() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [appBarColor, Colors.blueGrey[400]],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "No Data Available",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: white,
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Top up your data to enjoy Internet!",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: white,
-            ),
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 45,
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: OutlineCircularButton(
-                  iconData: Icons.add_circle_rounded,
-                  labelText: "Data",
-                  route: "/add_data",
-                  myColor: appBarColor,
-                ),
-              ),
-              SizedBox(width: 5),
-              Container(
-                height: 45,
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: OutlineCircularButton(
-                  iconData: Icons.add_circle_rounded,
-                  labelText: "Topping",
-                  route: "/add_topping",
-                  myColor: appBarColor,
-                ),
-              ),
-              SizedBox(width: 5),
-              Container(
-                height: 45,
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: OutlineCircularButton(
-                  iconData: Icons.add_circle_rounded,
-                  labelText: "Phone",
-                  route: "/add_phone",
-                  myColor: appBarColor,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }

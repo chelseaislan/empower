@@ -1,36 +1,41 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
-import 'package:fake_mpwr/custom_widgets/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/containers/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/profile_help_buttons.dart';
+import 'package:fake_mpwr/screens/home_navbar/offer_screen.dart';
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Help Center',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.mail_rounded),
-            tooltip: "Notifications",
-          ),
-        ],
-      ),
+      backgroundColor: lightGrey1,
+      appBar: NavBarAppBar(appBarTitle: "Help Center"),
       body: ListView(
         children: [
-          headerContainer(),
+          HeaderWithActionContainer(
+            title: "Hi, Astrid S!",
+            subtitle: "Looking for something today?",
+            containerChild: TextFormField(
+              decoration: InputDecoration(
+                hintText: "Search for questions here...",
+                fillColor: lightGrey1,
+                filled: true,
+                prefixIcon: Icon(
+                  Icons.search_rounded,
+                  color: appBarColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: lightGrey1, width: 2),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: appBarColor, width: 2),
+                ),
+              ),
+            ),
+          ),
           ProfileHelpButtons(
             labelText: "Frequently Asked Questions",
             materialColor: Colors.amber[800],
@@ -67,8 +72,21 @@ class HelpScreen extends StatelessWidget {
       floatingActionButton: LiveChat(),
     );
   }
+}
 
-  Container headerContainer() {
+class HeaderWithActionContainer extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final Widget containerChild;
+  const HeaderWithActionContainer({
+    Key key,
+    this.title,
+    this.subtitle,
+    this.containerChild,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
@@ -83,7 +101,7 @@ class HelpScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "Hi, Astrid S!",
+            title,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w600,
@@ -92,7 +110,7 @@ class HelpScreen extends StatelessWidget {
           ),
           SizedBox(height: 3),
           Text(
-            "Looking for something today?",
+            subtitle,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,
@@ -101,26 +119,8 @@ class HelpScreen extends StatelessWidget {
           ),
           SizedBox(height: 15),
           Container(
-            child: TextFormField(
-              decoration: InputDecoration(
-                hintText: "Search for questions here...",
-                fillColor: lightGrey1,
-                filled: true,
-                prefixIcon: Icon(
-                  Icons.search_rounded,
-                  color: appBarColor,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: lightGrey1, width: 2),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: appBarColor, width: 2),
-                ),
-              ),
-            ),
-          )
+            child: containerChild,
+          ),
         ],
       ),
     );

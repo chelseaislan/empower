@@ -1,39 +1,73 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/ad_container.dart';
-import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
-import 'package:fake_mpwr/custom_widgets/live_chat.dart';
-import 'package:fake_mpwr/custom_widgets/offer_container.dart';
+import 'package:fake_mpwr/custom_widgets/containers/ad_container.dart';
+import 'package:fake_mpwr/custom_widgets/containers/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/containers/latest_offer_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
+import 'package:fake_mpwr/screens/home_navbar/help_screen.dart';
 import 'package:flutter/material.dart';
 
 class OfferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Dashboard',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.mail_rounded),
-            tooltip: "Notifications",
-          ),
-        ],
-      ),
+      backgroundColor: lightGrey1,
+      appBar: NavBarAppBar(appBarTitle: "MPWR - Dashboard"),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            headerContainer(),
+            HeaderWithActionContainer(
+              title: "Good morning!",
+              subtitle: "Here are interesting offers just for you!",
+              containerChild: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed("/usage_detail");
+                },
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: lightGrey1,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.language_rounded, color: primary1),
+                            SizedBox(width: 5),
+                            Text("0 GB"),
+                          ],
+                        ),
+                        VerticalDivider(
+                          width: 5,
+                          thickness: 1,
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.add_chart_rounded, color: primary1),
+                            SizedBox(width: 5),
+                            Text("0 GB"),
+                          ],
+                        ),
+                        VerticalDivider(
+                          width: 5,
+                          thickness: 1,
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.phone_callback_rounded, color: primary1),
+                            SizedBox(width: 5),
+                            Text("0 minutes"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Container(
                 margin: EdgeInsets.only(bottom: 5),
                 alignment: Alignment.centerLeft,
@@ -90,84 +124,41 @@ class OfferScreen extends StatelessWidget {
       floatingActionButton: LiveChat(),
     );
   }
+}
 
-  Container headerContainer() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [appBarColor, Colors.blueGrey[400]],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+class NavBarAppBar extends StatelessWidget with PreferredSizeWidget {
+  final String appBarTitle;
+  const NavBarAppBar({
+    Key key,
+    this.appBarTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: appBarColor,
+      centerTitle: true,
+      elevation: 0,
+      title: Text(
+        appBarTitle,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: white,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            "Good afternoon!",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-              color: white,
-            ),
-          ),
-          SizedBox(height: 3),
-          Text(
-            "Here are interesting offers just for you!",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: white,
-            ),
-          ),
-          SizedBox(height: 15),
-          Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: lightGrey1,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.language_rounded, color: primary1),
-                      SizedBox(width: 5),
-                      Text("0 GB"),
-                    ],
-                  ),
-                  VerticalDivider(
-                    width: 5,
-                    thickness: 1,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.add_chart_rounded, color: primary1),
-                      SizedBox(width: 5),
-                      Text("0 GB"),
-                    ],
-                  ),
-                  VerticalDivider(
-                    width: 5,
-                    thickness: 1,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.phone_callback_rounded, color: primary1),
-                      SizedBox(width: 5),
-                      Text("0 minutes"),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed("/nav_notif");
+          },
+          icon: Icon(Icons.notifications_rounded),
+          tooltip: "Notifications",
+        ),
+      ],
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

@@ -1,7 +1,8 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
-import 'package:fake_mpwr/custom_widgets/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/containers/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/profile_help_buttons.dart';
+import 'package:fake_mpwr/screens/home_navbar/offer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 
@@ -10,147 +11,65 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'My Profile',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.mail_rounded),
-            tooltip: "Notifications",
-          ),
-        ],
-      ),
+      appBar: NavBarAppBar(appBarTitle: "My Profile"),
       body: ListView(
         children: [
-          profileContainer(),
-          GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed("/edit_profile"),
-            child: ProfileHelpButtons(
-              labelText: "Edit Profile",
-              materialColor: Colors.red[800],
-            ),
+          ProfileHeaderContainer(
+            imagePath: "images/profpic.jpg",
+            nickName: "Astrid S",
+            phoneNumber: "0814 1848 2099",
+            emailAddress: "astrids@gmail.com",
+          ),
+          ProfileHelpButtons(
+            labelText: "Edit Profile",
+            materialColor: Colors.red[800],
+            onItemTap: () => Navigator.of(context).pushNamed("/edit_profile"),
           ),
           ProfileHelpButtons(
             labelText: "Invite friends to get rewards!",
             materialColor: Colors.red[800],
+            onItemTap: () {},
           ),
-          GestureDetector(
-            onTap: () {
+          ProfileHelpButtons(
+            labelText: "Lost your SIM card?",
+            materialColor: Colors.red[800],
+            onItemTap: () {
               return showDialog(
                 context: context,
-                builder: (builder) => AlertDialog(
-                  title: Text("Lost your SIM card?"),
-                  content: Text(
-                      "You can send an email to us. We will gather your personal data and device information for verification in the email."),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Cancel"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Send Email"),
-                    ),
-                  ],
+                builder: (builder) => TextAlertDialog(
+                  alertTitle: "Lost your SIM card?",
+                  alertContent:
+                      "Contact us through email and send all the details that you have.",
+                  alertTrueButton: "Okay",
+                  alertTrueRoute: () async => Navigator.of(context).pop(),
                 ),
               );
             },
-            child: ProfileHelpButtons(
-              labelText: "Lost your SIM card?",
-              materialColor: Colors.red[800],
-            ),
           ),
           ProfileHelpButtons(
             labelText: "Edit shipping address",
             materialColor: Colors.red[800],
+            onItemTap: () {},
           ),
-          GestureDetector(
-            onTap: () {
+          ProfileHelpButtons(
+            labelText: "Change Language",
+            materialColor: Colors.red[800],
+            onItemTap: () {},
+          ),
+          ProfileHelpButtons(
+            labelText: "Log Out",
+            materialColor: Colors.red[800],
+            onItemTap: () {
               return showDialog(
                 context: context,
-                builder: (builder) => AlertDialog(
-                  title: Text("Change Language"),
-                  content: GroupButton(
-                    isRadio: true,
-                    spacing: 3,
-                    buttons: [
-                      "🇮🇩 Bahasa Indonesia",
-                      "🇺🇸 English (United States)"
-                    ],
-                    unselectedTextStyle: TextStyle(
-                        fontWeight: FontWeight.w400, color: secondBlack),
-                    selectedColor: primary1,
-                    selectedButtons: ["🇮🇩 Bahasa Indonesia"],
-                    onSelected: (index, isSelected) =>
-                        print('$index button is selected'),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text("Save Changes"),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: ProfileHelpButtons(
-              labelText: "Change Language",
-              materialColor: Colors.red[800],
-            ),
-          ),
-          GestureDetector(
-            child: ProfileHelpButtons(
-              labelText: "Log Out",
-              materialColor: Colors.red[800],
-            ),
-            onTap: () {
-              // Show Dialog for confirmation
-              return showDialog(
-                context: context,
-                builder: (builder) => AlertDialog(
-                  title: Text("Confirmation"),
-                  content: Text("Log out from MPWR?"),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: primary1,
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            "/login", (route) => false);
-                      },
-                      child: Text(
-                        "Log Out",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: primary1,
-                        ),
-                      ),
-                    ),
-                  ],
+                builder: (builder) => TextAlertDialog(
+                  alertTitle: "Confirmation",
+                  alertContent: "Do you really want to log out from MPWR?",
+                  alertTrueButton: "Log Out",
+                  alertTrueRoute: () async {
+                    await Navigator.of(context)
+                        .pushNamedAndRemoveUntil("/login", (route) => false);
+                  },
                 ),
               );
             },
@@ -161,8 +80,57 @@ class ProfileScreen extends StatelessWidget {
       floatingActionButton: LiveChat(),
     );
   }
+}
 
-  Container profileContainer() {
+class TextAlertDialog extends StatelessWidget {
+  // Cancel let it as it is
+  final String alertTitle;
+  final String alertContent;
+  final String alertTrueButton;
+  final Function alertTrueRoute;
+  const TextAlertDialog({
+    Key key,
+    this.alertTitle,
+    this.alertContent,
+    this.alertTrueButton,
+    this.alertTrueRoute,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(alertTitle),
+      content: Text(alertContent),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text("Cancel"),
+        ),
+        TextButton(
+          onPressed: alertTrueRoute,
+          child: Text(alertTrueButton),
+        ),
+      ],
+    );
+  }
+}
+
+class ProfileHeaderContainer extends StatelessWidget {
+  final String imagePath;
+  final String nickName;
+  final String phoneNumber;
+  final String emailAddress;
+
+  const ProfileHeaderContainer({
+    Key key,
+    this.imagePath,
+    this.nickName,
+    this.phoneNumber,
+    this.emailAddress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.fromLTRB(20, 10, 20, 30),
@@ -176,7 +144,7 @@ class ProfileScreen extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage("images/profpic.jpg"),
+            backgroundImage: AssetImage(imagePath),
             radius: 50,
           ),
           SizedBox(width: 15),
@@ -184,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Astrid S",
+                nickName,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -193,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Text(
-                "0814 9582 1048",
+                phoneNumber,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -201,7 +169,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "astrids@gmail.com",
+                emailAddress,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,

@@ -1,7 +1,8 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ResetPassword extends StatelessWidget {
   @override
@@ -56,7 +57,9 @@ class ResetPassword extends StatelessWidget {
               iconData: Icons.link_rounded,
               labelText: "Get Verification Link",
               myColor: primary1,
-              route: "/belum_ada",
+              onPressed: () {
+                Fluttertoast.showToast(msg: "Please check your email!", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM);
+              },
             ),
           ),
         ],

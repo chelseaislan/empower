@@ -2,9 +2,11 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'add_data.dart';
 
 class AddPhone extends StatefulWidget {
   @override
@@ -18,19 +20,7 @@ class _AddPhoneState extends State<AddPhone> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Add Phone Package',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-      ),
+      appBar: NoActionsAppBar(appBarTitle: "Add Phone Package"),
       body: Stack(
         children: [
           ListView(
@@ -39,6 +29,7 @@ class _AddPhoneState extends State<AddPhone> {
                 title: "Wanna save some pulsa to call?",
                 subtitle:
                     "Add a phone package to freely call to ALL local operators!",
+                    textColor: white,
               ),
               TextStyleOne(
                 title: "Available packages:",
@@ -113,8 +104,8 @@ class _AddPhoneState extends State<AddPhone> {
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
                   .format(_price),
               titleText: "Total Price:",
-              routeNext: "/add_payment",
               myColor: appBarColor,
+              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
             ),
           ),
         ],

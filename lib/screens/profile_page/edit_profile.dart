@@ -1,5 +1,5 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/button_alert.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_alert.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -80,11 +80,14 @@ class EditProfile extends StatelessWidget {
           ButtonAlert(
             titleText: "Successful!",
             contentText: "You have successfully edited your profile.",
-            route: "/navbar",
-            alertIcon: Icons.home_rounded,
             alertText: "Go to Dashboard",
             buttonIcon: Icons.save_rounded,
             buttonText: "Save Profile",
+            myColor: primary1,
+            onPressed: () async {
+              await Navigator.of(context)
+                  .pushNamedAndRemoveUntil("/navbar", (route) => false);
+            },
           ),
         ],
       ),

@@ -1,5 +1,5 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/button_alert.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_alert.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -53,11 +53,14 @@ class ActivateCard extends StatelessWidget {
             titleText: "Successful!",
             contentText:
                 "You have activated your MPWR SIM card. Enjoy Internet!",
-            route: "/login",
-            alertIcon: Icons.login_rounded,
             alertText: "Go to Login Page",
             buttonIcon: Icons.phonelink_setup_rounded,
             buttonText: "Activate Card",
+            myColor: primary1,
+            onPressed: () async {
+              await Navigator.of(context)
+                  .pushNamedAndRemoveUntil("/login", (route) => false);
+            },
           ),
         ],
       ),

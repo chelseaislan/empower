@@ -2,28 +2,18 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/icons_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
+
+import 'add_data.dart';
 
 class AddTopping extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Add Topping',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-      ),
+      appBar: NoActionsAppBar(appBarTitle: "Add Topping"),
       body: Stack(
         children: [
           ListView(
@@ -32,6 +22,7 @@ class AddTopping extends StatelessWidget {
                 title: "Level up your life!",
                 subtitle:
                     "You can buy toppings only for the applications that you know and love.",
+                textColor: white,
               ),
               TextStyleOne(title: "Available toppings:"),
               Container(
@@ -103,8 +94,8 @@ class AddTopping extends StatelessWidget {
             child: TotalPriceNew(
               totalPrice: "0",
               titleText: "Total Price:",
-              routeNext: "/add_payment",
               myColor: appBarColor,
+              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
             ),
           ),
         ],

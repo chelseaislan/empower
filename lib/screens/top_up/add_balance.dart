@@ -2,9 +2,11 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'add_data.dart';
 
 class AddBalance extends StatefulWidget {
   @override
@@ -25,19 +27,7 @@ class _AddBalanceState extends State<AddBalance> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Add Balance',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-      ),
+      appBar: NoActionsAppBar(appBarTitle: "Add Balance"),
       body: Stack(
         children: [
           ListView(
@@ -45,6 +35,7 @@ class _AddBalanceState extends State<AddBalance> {
               BlueHeader(
                 title: "In need of pulsa to call?",
                 subtitle: "Top up your balance here before it's too late!",
+                textColor: white,
               ),
               TextStyleOne(
                 title: "Available packages:",
@@ -161,8 +152,8 @@ class _AddBalanceState extends State<AddBalance> {
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
                   .format(_price),
               titleText: "Total Price:",
-              routeNext: "/add_payment",
               myColor: appBarColor,
+              onItemTap: () => Navigator.of(context).pushNamed("/add_payment"),
             ),
           )
         ],

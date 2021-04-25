@@ -1,24 +1,23 @@
-import 'package:fake_mpwr/colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAlert extends StatelessWidget {
   final String titleText;
   final String contentText;
-  final String route;
-  final IconData alertIcon;
   final String alertText;
   final IconData buttonIcon;
   final String buttonText;
+  final Color myColor;
+  final Function onPressed;
 
   const ButtonAlert(
       {Key key,
       this.titleText,
       this.contentText,
-      this.route,
-      this.alertIcon,
       this.alertText,
       this.buttonIcon,
-      this.buttonText})
+      this.buttonText,
+      this.myColor,
+      this.onPressed})
       : super(key: key);
 
   @override
@@ -28,7 +27,7 @@ class ButtonAlert extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(20, 5, 20, 30),
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          primary: primary1,
+          primary: myColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
@@ -41,13 +40,9 @@ class ButtonAlert extends StatelessWidget {
               title: Text(titleText),
               content: Text(contentText),
               actions: [
-                TextButton.icon(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil(route, (route) => false);
-                  },
-                  icon: Icon(alertIcon),
-                  label: Text(alertText),
+                TextButton(
+                  onPressed: onPressed,
+                  child: Text(alertText),
                 ),
               ],
             ),

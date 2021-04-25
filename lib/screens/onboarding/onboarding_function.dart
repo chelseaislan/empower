@@ -1,5 +1,5 @@
 // Ini lebih ke function dari UI nya
-import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
 import 'package:flutter/material.dart';
 import 'onboarding_ui.dart';
 import 'package:fake_mpwr/colors.dart';
@@ -64,7 +64,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         child: FilledCircularButton(
                           iconData: Icons.play_circle_outline_rounded,
                           labelText: "Continue",
-                          route: "/login",
+                          myColor: primary1,
+                          onPressed: () async {
+                            await Navigator.of(context).pushNamedAndRemoveUntil(
+                                "/login", (route) => false);
+                          },
                         ),
                       )
                     : SizedBox(),

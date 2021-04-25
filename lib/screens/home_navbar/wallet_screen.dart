@@ -1,9 +1,10 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
-import 'package:fake_mpwr/custom_widgets/live_chat.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/containers/app_ver_container.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/live_chat.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
+import 'package:fake_mpwr/screens/home_navbar/offer_screen.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -11,29 +12,35 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightGrey1,
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'My Balance',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: white,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.mail_rounded),
-            tooltip: "Notifications",
-          ),
-        ],
-      ),
+      appBar: NavBarAppBar(appBarTitle: "My Balance"),
       body: ListView(
         children: [
-          balanceContainer(),
+          MyBalanceContainer(
+            title: "Rp72",
+            titleStyle: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.w600,
+              color: white,
+            ),
+            subtitle: "Card is active until 24 July 2022 at 23:10",
+            subStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: white,
+            ),
+            childWidget: Container(
+              height: 45,
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: OutlineCircularButton(
+                iconData: Icons.add_circle_rounded,
+                labelText: "Top-up Balance",
+                onPressed: () async {
+                  await Navigator.of(context).pushNamed("/add_balance");
+                },
+                myColor: appBarColor,
+              ),
+            ),
+          ),
           TextStyleOne(title: "Your latest transactions"),
           Column(
             children: [
@@ -101,8 +108,26 @@ class WalletScreen extends StatelessWidget {
       floatingActionButton: LiveChat(),
     );
   }
+}
 
-  Container balanceContainer() {
+class MyBalanceContainer extends StatelessWidget {
+  final String title;
+  final TextStyle titleStyle;
+  final String subtitle;
+  final TextStyle subStyle;
+  final Widget childWidget;
+
+  const MyBalanceContainer({
+    Key key,
+    this.title,
+    this.subtitle,
+    this.childWidget,
+    this.titleStyle,
+    this.subStyle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
@@ -116,34 +141,11 @@ class WalletScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Rp70",
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.w600,
-              color: white,
-            ),
-          ),
+          Text(title, style: titleStyle),
           SizedBox(height: 5),
-          Text(
-            "Card is active until 24 July 2022 at 23:10",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: white,
-            ),
-          ),
+          Text(subtitle, style: subStyle),
           SizedBox(height: 10),
-          Container(
-            height: 45,
-            margin: EdgeInsets.symmetric(vertical: 10),
-            child: OutlineCircularButton(
-              iconData: Icons.add_circle_rounded,
-              labelText: "Top-up Balance",
-              route: "/add_balance",
-              myColor: appBarColor,
-            ),
-          ),
+          childWidget,
         ],
       ),
     );

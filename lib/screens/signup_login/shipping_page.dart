@@ -1,6 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 
 class Shipping extends StatelessWidget {
@@ -63,8 +63,8 @@ class Shipping extends StatelessWidget {
           TotalPriceNew(
             titleText: "Total Price:",
             totalPrice: "Rp30",
-            routeNext: "/payment",
             myColor: primary1,
+            onItemTap: () => Navigator.of(context).pushNamed("/payment"),
           ),
         ],
       ),

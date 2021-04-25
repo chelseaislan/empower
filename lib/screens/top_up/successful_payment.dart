@@ -1,6 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/complete_header.dart';
-import 'package:fake_mpwr/custom_widgets/filled_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
+import 'package:fake_mpwr/screens/signup_login/successful_order.dart';
 import 'package:flutter/material.dart';
 
 class SuccessPayment extends StatelessWidget {
@@ -42,29 +43,29 @@ class SuccessPayment extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 10),
-                        orderDetailContainer(
-                          "Transaction Number",
-                          "840285",
+                        OrderDetailsContainer(
+                          title: "Transaction Number",
+                          description: "840285",
                         ),
-                        orderDetailContainer(
-                          "Order Name",
-                          "Friendly Package",
+                        OrderDetailsContainer(
+                          title: "Order Name",
+                          description: "Friendly Package",
                         ),
-                        orderDetailContainer(
-                          "Order Date",
-                          "Thursday, 24 April 2021",
+                        OrderDetailsContainer(
+                          title: "Order Date",
+                          description: "Thursday, 24 April 2021",
                         ),
-                        orderDetailContainer(
-                          "Order Time",
-                          "13:24",
+                        OrderDetailsContainer(
+                          title: "Order Time",
+                          description: "13:24",
                         ),
-                        orderDetailContainer(
-                          "Payment Type",
-                          "Bank Jago",
+                        OrderDetailsContainer(
+                          title: "Payment Type",
+                          description: "Bank Jago",
                         ),
-                        orderDetailContainer(
-                          "Total Payment",
-                          "Rp50",
+                        OrderDetailsContainer(
+                          title: "Total Payment",
+                          description: "Rp50",
                         ),
                         Container(
                           height: 45,
@@ -72,7 +73,12 @@ class SuccessPayment extends StatelessWidget {
                           child: FilledCircularButton(
                             iconData: Icons.home_rounded,
                             labelText: "Go to Dashboard",
-                            route: "/navbar",
+                            myColor: primary1,
+                            onPressed: () async {
+                              await Navigator.of(context)
+                                  .pushNamedAndRemoveUntil(
+                                      "/navbar", (route) => false);
+                            },
                           ),
                         ),
                       ],
@@ -83,33 +89,6 @@ class SuccessPayment extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Container orderDetailContainer(title, description) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: secondBlack,
-            ),
-          ),
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: primary1,
-            ),
-          ),
-        ],
       ),
     );
   }

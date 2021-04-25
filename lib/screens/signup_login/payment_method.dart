@@ -1,7 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/agree_container.dart';
 import 'package:fake_mpwr/custom_widgets/payment_options.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 
 class Payment extends StatefulWidget {
@@ -119,8 +119,8 @@ class _PaymentState extends State<Payment> {
           TotalPriceNew(
             titleText: "Total Price:",
             totalPrice: "Rp30",
-            routeNext: "/successful",
             myColor: primary1,
+            onItemTap: () => Navigator.of(context).pushNamed("/successful"),
           ),
         ],
       ),

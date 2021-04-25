@@ -5,11 +5,11 @@ class TotalPriceNew extends StatelessWidget {
   // 1. Declare required final variables and auto create constructor
   final String titleText;
   final String totalPrice;
-  final String routeNext;
   final Color myColor;
+  final Function onItemTap;
 
   const TotalPriceNew(
-      {Key key, this.titleText, this.totalPrice, this.routeNext, this.myColor})
+      {Key key, this.titleText, this.totalPrice, this.myColor, this.onItemTap})
       : super(key: key);
 
   @override
@@ -58,7 +58,7 @@ class TotalPriceNew extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(routeNext, ),
+            onTap: onItemTap,
             child: Container(
               margin: EdgeInsets.only(left: 10),
               padding: EdgeInsets.all(20),

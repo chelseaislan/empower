@@ -1,5 +1,5 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/usage_detail_container.dart';
 import 'package:flutter/material.dart';
 
@@ -63,105 +63,121 @@ class UsageDetail extends StatelessWidget {
         // 4 Body TabBarView
         body: TabBarView(
           children: [
-            Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [appBarColor, primary1],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter),
-                  ),
-                ),
-                ListView(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Text(
-                        "Total Data",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w300,
-                          color: white,
-                        ),
-                      ),
-                    ),
-                    // Rencananya bisa nambah
-                    Container(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
-                      child: Text(
-                        "$totalData GB",
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600,
-                          color: white,
-                        ),
-                      ),
-                    ),
-                    Divider(
-                      color: lightGrey1,
-                      height: 40,
-                      thickness: 1,
-                      indent: 20,
-                      endIndent: 20,
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: Text(
-                        "Here are the details of your active package(s):",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w300,
-                          color: white,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        UsageDetailContainer(
-                          iconData: Icons.language_rounded,
-                          title: "Kuota Kemendikbud",
-                          number1: 4.0.toString(),
-                          number2: 12.toString(),
-                          type: "GB",
-                          remaining: 0.40,
-                          activeUntil: "29 April 2021",
-                          whatHour: "12:00",
-                          isVisible: true,
-                        ),
-                        UsageDetailContainer(
-                          iconData: Icons.language_rounded,
-                          title: "Friendly Package",
-                          number1: 4.5.toString(),
-                          number2: 12.toString(),
-                          type: "GB",
-                          remaining: 0.45,
-                          activeUntil: "03 May 2021",
-                          whatHour: "10:00",
-                          isVisible: false,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 80),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  alignment: Alignment.bottomCenter,
-                  child: OutlineCircularButton(
-                    iconData: Icons.add_circle_rounded,
-                    labelText: "Buy Data Packages",
-                    myColor: appBarColor,
-                    route: "/add_data",
-                  ),
-                ),
-              ],
-            ),
-            Text("data"),
+            UsageStackWidget(totalData: totalData),
+            UsageStackWidget(totalData: totalData),
             Text("data"),
           ],
         ),
       ),
+    );
+  }
+}
+
+class UsageStackWidget extends StatelessWidget {
+  const UsageStackWidget({
+    Key key,
+    @required this.totalData,
+  }) : super(key: key);
+
+  final int totalData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [appBarColor, primary1],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter),
+          ),
+        ),
+        ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Text(
+                "Total Data",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w300,
+                  color: white,
+                ),
+              ),
+            ),
+            // Rencananya bisa nambah
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
+              child: Text(
+                "$totalData GB",
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                  color: white,
+                ),
+              ),
+            ),
+            Divider(
+              color: lightGrey1,
+              height: 40,
+              thickness: 1,
+              indent: 20,
+              endIndent: 20,
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: Text(
+                "Here are the details of your active package(s):",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w300,
+                  color: white,
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                UsageDetailContainer(
+                  iconData: Icons.language_rounded,
+                  title: "Kuota Kemendikbud",
+                  number1: 4.0.toString(),
+                  number2: 12.toString(),
+                  type: "GB",
+                  remaining: 0.40,
+                  activeUntil: "29 April 2021",
+                  whatHour: "12:00",
+                  isVisible: true,
+                ),
+                UsageDetailContainer(
+                  iconData: Icons.language_rounded,
+                  title: "Friendly Package",
+                  number1: 4.5.toString(),
+                  number2: 12.toString(),
+                  type: "GB",
+                  remaining: 0.45,
+                  activeUntil: "03 May 2021",
+                  whatHour: "10:00",
+                  isVisible: false,
+                ),
+              ],
+            ),
+            SizedBox(height: 80),
+          ],
+        ),
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+          alignment: Alignment.bottomCenter,
+          child: OutlineCircularButton(
+            iconData: Icons.add_circle_rounded,
+            labelText: "Buy Data Packages",
+            myColor: appBarColor,
+            onPressed: () async {
+              await Navigator.of(context).pushNamed("/add_data");
+            },
+          ),
+        ),
+      ],
     );
   }
 }

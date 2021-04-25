@@ -1,9 +1,10 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
-import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TrackCard extends StatelessWidget {
   @override
@@ -58,7 +59,13 @@ class TrackCard extends StatelessWidget {
               iconData: Icons.search_rounded,
               labelText: "Track",
               myColor: primary1,
-              route: "/belum_ada",
+              // route: "/belum_ada",
+              onPressed: () async {
+                await Fluttertoast.showToast(
+                    msg: "Searching...",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM);
+              },
             ),
           ),
           TextStyleOne(title: "Latest status:"),

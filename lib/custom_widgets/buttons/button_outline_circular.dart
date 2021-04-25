@@ -1,36 +1,38 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:flutter/material.dart';
 
-// Filled circular button buat push named and remove until
-class FilledCircularButton extends StatelessWidget {
+// Outline circular buat pushNamed
+class OutlineCircularButton extends StatelessWidget {
   final IconData iconData;
   final String labelText;
-  final String route;
+  final Color myColor;
+  final Function onPressed;
 
-  const FilledCircularButton(
-      {Key key, this.iconData, this.labelText, this.route})
+  // Function onPressed + async await
+  const OutlineCircularButton(
+      {Key key, this.iconData, this.labelText, this.myColor, this.onPressed})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        primary: primary1,
+        primary: white,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
+          side: BorderSide(color: myColor),
         ),
       ),
-      onPressed: () {
-        Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
-      },
+      // Navigator Route
+      onPressed: onPressed,
       icon: Icon(
         iconData,
-        color: white,
+        color: myColor,
       ),
       label: Text(
         labelText,
-        style: TextStyle(color: white),
+        style: TextStyle(color: myColor),
       ),
     );
   }

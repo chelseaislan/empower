@@ -1,6 +1,7 @@
 import 'package:fake_mpwr/colors.dart';
+import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
-import 'package:fake_mpwr/custom_widgets/total_price_new.dart';
+import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -39,8 +40,26 @@ class _ChooseNumberState extends State<ChooseNumber> {
         children: [
           ListView(
             children: [
-              titleContainer(),
-              timeContainer(),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TitleSubtitleColumn(
+                  title: "Choose your own number!",
+                  textColor: secondBlack,
+                  subtitle: "These phone numbers will expire in:",
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "05:00",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: secondBlack,
+                  ),
+                ),
+              ),
               Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -133,52 +152,8 @@ class _ChooseNumberState extends State<ChooseNumber> {
               totalPrice: NumberFormat.currency(
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
                   .format(_price),
-              routeNext: "/shipping",
               myColor: primary1,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container timeContainer() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.only(top: 10, bottom: 20),
-      child: Text(
-        "05:00",
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: secondBlack,
-        ),
-      ),
-    );
-  }
-
-  Container titleContainer() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      alignment: Alignment.centerLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Choose your own number!",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: secondBlack,
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            "These phone numbers will expire in:",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: secondBlack,
+              onItemTap: () => Navigator.of(context).pushNamed("/shipping"),
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:fake_mpwr/screens/home_navbar/nav_notifications.dart';
 import 'package:fake_mpwr/screens/home_navbar/navbar.dart';
 import 'package:fake_mpwr/screens/onboarding/onboarding_function.dart';
 import 'package:fake_mpwr/screens/onboarding/splash_screen.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         "/success_payment": (context) => new SuccessPayment(),
         "/edit_profile": (context) => new EditProfile(),
         "/usage_detail": (context) => new UsageDetail(),
+        "/nav_notif": (context) => new NavNotifications(),
       },
     );
   }
