@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class UsageDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var totalData = 0;
     // 1 Buat TabBar
     var myTabBar = TabBar(
       tabs: [
@@ -63,8 +62,8 @@ class UsageDetail extends StatelessWidget {
         // 4 Body TabBarView
         body: TabBarView(
           children: [
-            UsageStackWidget(totalData: totalData),
-            UsageStackWidget(totalData: totalData),
+            UsageStackWidget(),
+            Text("data"),
             Text("data"),
           ],
         ),
@@ -76,10 +75,7 @@ class UsageDetail extends StatelessWidget {
 class UsageStackWidget extends StatelessWidget {
   const UsageStackWidget({
     Key key,
-    @required this.totalData,
   }) : super(key: key);
-
-  final int totalData;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +106,7 @@ class UsageStackWidget extends StatelessWidget {
             Container(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
               child: Text(
-                "$totalData GB",
+                "8.5 GB",
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w600,

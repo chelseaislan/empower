@@ -24,11 +24,15 @@ class Shipping extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          LoginTextField(
-            title: "Full Name",
-            type: TextInputType.name,
-            obscure: false,
-            iconData: Icons.person_rounded,
+          Column(
+            children: [
+              LoginTextField(
+                title: "Full Name",
+                type: TextInputType.name,
+                obscure: false,
+                iconData: Icons.person_rounded,
+              ),
+            ],
           ),
           LoginTextField(
             title: "KTP Number",

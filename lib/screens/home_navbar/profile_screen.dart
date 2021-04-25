@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
           ProfileHelpButtons(
             labelText: "Invite friends to get rewards!",
             materialColor: Colors.red[800],
-            onItemTap: () {},
+            onItemTap: () => Navigator.of(context).pushNamed("/referral"),
           ),
           ProfileHelpButtons(
             labelText: "Lost your SIM card?",
@@ -38,8 +38,8 @@ class ProfileScreen extends StatelessWidget {
                 context: context,
                 builder: (builder) => TextAlertDialog(
                   alertTitle: "Lost your SIM card?",
-                  alertContent:
-                      "Contact us through email and send all the details that you have.",
+                  alertContent: Text(
+                      "Contact us through email and send all the details that you have."),
                   alertTrueButton: "Okay",
                   alertTrueRoute: () async => Navigator.of(context).pop(),
                 ),
@@ -49,12 +49,39 @@ class ProfileScreen extends StatelessWidget {
           ProfileHelpButtons(
             labelText: "Edit shipping address",
             materialColor: Colors.red[800],
-            onItemTap: () {},
+            onItemTap: () => Navigator.of(context).pushNamed("/edit_address"),
           ),
           ProfileHelpButtons(
             labelText: "Change Language",
             materialColor: Colors.red[800],
-            onItemTap: () {},
+            onItemTap: () {
+              return showDialog(
+                context: context,
+                builder: (builder) => TextAlertDialog(
+                  alertTitle: "Change Language",
+                  alertTrueButton: "Confirm",
+                  alertTrueRoute: () async {
+                    await Navigator.of(context)
+                        .pushNamedAndRemoveUntil("/login", (route) => false);
+                  },
+                  alertContent: GroupButton(
+                    isRadio: true,
+                    spacing: 1,
+                    unselectedTextStyle: TextStyle(
+                        fontWeight: FontWeight.w400, color: secondBlack),
+                    selectedColor: primary1,
+                    selectedButtons: ["🇮🇩 Bahasa Indonesia"],
+                    buttons: [
+                      "🇮🇩 Bahasa Indonesia",
+                      "🇺🇸 English (United States)",
+                      "🇷🇺 Русский (Russian)",
+                    ],
+                    onSelected: (index, isSelected) =>
+                        print('$index button is selected'),
+                  ),
+                ),
+              );
+            },
           ),
           ProfileHelpButtons(
             labelText: "Log Out",
@@ -64,7 +91,8 @@ class ProfileScreen extends StatelessWidget {
                 context: context,
                 builder: (builder) => TextAlertDialog(
                   alertTitle: "Confirmation",
-                  alertContent: "Do you really want to log out from MPWR?",
+                  alertContent:
+                      Text("Do you really want to log out from MPWR?"),
                   alertTrueButton: "Log Out",
                   alertTrueRoute: () async {
                     await Navigator.of(context)
@@ -85,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
 class TextAlertDialog extends StatelessWidget {
   // Cancel let it as it is
   final String alertTitle;
-  final String alertContent;
+  final Widget alertContent;
   final String alertTrueButton;
   final Function alertTrueRoute;
   const TextAlertDialog({
@@ -100,7 +128,7 @@ class TextAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(alertTitle),
-      content: Text(alertContent),
+      content: alertContent,
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),

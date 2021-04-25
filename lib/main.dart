@@ -2,7 +2,9 @@ import 'package:fake_mpwr/screens/home_navbar/nav_notifications.dart';
 import 'package:fake_mpwr/screens/home_navbar/navbar.dart';
 import 'package:fake_mpwr/screens/onboarding/onboarding_function.dart';
 import 'package:fake_mpwr/screens/onboarding/splash_screen.dart';
+import 'package:fake_mpwr/screens/profile_page/edit_address.dart';
 import 'package:fake_mpwr/screens/profile_page/edit_profile.dart';
+import 'package:fake_mpwr/screens/profile_page/referral.dart';
 import 'package:fake_mpwr/screens/signup_login/activate_card.dart';
 import 'package:fake_mpwr/screens/signup_login/choose_number.dart';
 import 'package:fake_mpwr/screens/signup_login/payment_method.dart';
@@ -48,8 +50,10 @@ class MyApp extends StatelessWidget {
         "/add_payment": (context) => new AddPayment(),
         "/success_payment": (context) => new SuccessPayment(),
         "/edit_profile": (context) => new EditProfile(),
+        "/edit_address": (context) => new EditAddress(),
         "/usage_detail": (context) => new UsageDetail(),
         "/nav_notif": (context) => new NavNotifications(),
+        "/referral": (context) => new Referral(),
       },
     );
   }

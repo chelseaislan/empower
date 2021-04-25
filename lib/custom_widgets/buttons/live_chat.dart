@@ -1,5 +1,6 @@
 import 'package:fake_mpwr/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LiveChat extends StatelessWidget {
   @override
@@ -11,7 +12,11 @@ class LiveChat extends StatelessWidget {
         size: 40,
       ),
       tooltip: "Live Chat",
-      onPressed: () {},
+      onPressed: () => Fluttertoast.showToast(
+        msg: "Starting live chat...",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      ),
     );
   }
 }
