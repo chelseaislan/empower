@@ -75,31 +75,41 @@ class SignupLogin extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
-            child: Row(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                signupButton(context),
-                Expanded(flex: 1, child: SizedBox()),
-                loginButton(context),
+                Row(
+                  children: [
+                    signupButton(context),
+                    Expanded(flex: 1, child: SizedBox()),
+                    loginButton(context),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: OutlineCircularButton(
+                    iconData: Icons.local_shipping_rounded,
+                    labelText: "Track/Activate My SIM Card",
+                    route: "/track_card",
+                    myColor: primary1,
+                  ),
+                ),
+                Container(
+                  height: 45,
+                  child: OutlineCircularButton(
+                    iconData: Icons.password_rounded,
+                    labelText: "Reset Password",
+                    route: "/reset_pass",
+                    myColor: primary1,
+                  ),
+                ),
               ],
             ),
           ),
-          shippingContainer(context),
         ],
-      ),
-    );
-  }
-
-  Container shippingContainer(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.only(top: 10, bottom: 50),
-      height: 45,
-      child: OutlineCircularButton(
-        iconData: Icons.local_shipping_rounded,
-        labelText: "Track/Activate My SIM Card",
-        route: "/track_card",
-        myColor: primary1,
       ),
     );
   }

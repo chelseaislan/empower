@@ -69,7 +69,9 @@ class TrackCard extends StatelessWidget {
             title: "Received by Astrid",
             subtitle: "06 January 2021",
             price: "Activate",
-            onItemTap: () {},
+            onItemTap: () {
+              Navigator.of(context).pushNamed("/activate_card");
+            },
           ),
           SizedBox(height: 30),
         ],

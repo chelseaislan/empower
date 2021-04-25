@@ -3,6 +3,7 @@ import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
 import 'package:fake_mpwr/custom_widgets/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/profile_help_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:group_button/group_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -32,25 +33,84 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: [
           profileContainer(),
-          ProfileHelpButtons(
-            labelText: "Edit Profile",
-            materialColor: Colors.red[800],
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/edit_profile"),
+            child: ProfileHelpButtons(
+              labelText: "Edit Profile",
+              materialColor: Colors.red[800],
+            ),
           ),
           ProfileHelpButtons(
             labelText: "Invite friends to get rewards!",
             materialColor: Colors.red[800],
           ),
-          ProfileHelpButtons(
-            labelText: "Lost your SIM card?",
-            materialColor: Colors.red[800],
+          GestureDetector(
+            onTap: () {
+              return showDialog(
+                context: context,
+                builder: (builder) => AlertDialog(
+                  title: Text("Lost your SIM card?"),
+                  content: Text(
+                      "You can send an email to us. We will gather your personal data and device information for verification in the email."),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Cancel"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Send Email"),
+                    ),
+                  ],
+                ),
+              );
+            },
+            child: ProfileHelpButtons(
+              labelText: "Lost your SIM card?",
+              materialColor: Colors.red[800],
+            ),
           ),
           ProfileHelpButtons(
             labelText: "Edit shipping address",
             materialColor: Colors.red[800],
           ),
-          ProfileHelpButtons(
-            labelText: "Change Language",
-            materialColor: Colors.red[800],
+          GestureDetector(
+            onTap: () {
+              return showDialog(
+                context: context,
+                builder: (builder) => AlertDialog(
+                  title: Text("Change Language"),
+                  content: GroupButton(
+                    isRadio: true,
+                    spacing: 3,
+                    buttons: [
+                      "🇮🇩 Bahasa Indonesia",
+                      "🇺🇸 English (United States)"
+                    ],
+                    unselectedTextStyle: TextStyle(
+                        fontWeight: FontWeight.w400, color: secondBlack),
+                    selectedColor: primary1,
+                    selectedButtons: ["🇮🇩 Bahasa Indonesia"],
+                    onSelected: (index, isSelected) =>
+                        print('$index button is selected'),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Save Changes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+            child: ProfileHelpButtons(
+              labelText: "Change Language",
+              materialColor: Colors.red[800],
+            ),
           ),
           GestureDetector(
             child: ProfileHelpButtons(
@@ -66,9 +126,7 @@ class ProfileScreen extends StatelessWidget {
                   content: Text("Log out from MPWR?"),
                   actions: [
                     TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                      onPressed: () => Navigator.of(context).pop(),
                       child: Text(
                         "Cancel",
                         style: TextStyle(
@@ -119,7 +177,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundImage: AssetImage("images/profpic.jpg"),
-            radius: 40,
+            radius: 50,
           ),
           SizedBox(width: 15),
           Column(

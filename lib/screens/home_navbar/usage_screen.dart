@@ -3,6 +3,7 @@ import 'package:fake_mpwr/custom_widgets/app_ver_container.dart';
 import 'package:fake_mpwr/custom_widgets/live_chat.dart';
 import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
+import 'package:fake_mpwr/custom_widgets/usage_indicator_container.dart';
 import 'package:flutter/material.dart';
 
 class UsageScreen extends StatelessWidget {
@@ -34,98 +35,38 @@ class UsageScreen extends StatelessWidget {
         children: [
           usageContainer(),
           TextStyleOne(title: "Your package details"),
-          indicatorContainer(
-              context, Icons.language_rounded, "Data", "0", "GB", 0),
-          indicatorContainer(
-              context, Icons.add_chart_rounded, "Topping", "0", "GB", 0),
-          indicatorContainer(context, Icons.phone_callback_rounded, "Phone",
-              "0", "minutes", 0),
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/usage_detail"),
+            child: Column(
+              children: [
+                UsageIndicator(
+                  iconData: Icons.language_rounded,
+                  title: "Remaining Data",
+                  number: 0.toString(),
+                  type: "GB",
+                  remaining: 0.0,
+                ),
+                UsageIndicator(
+                  iconData: Icons.add_chart_rounded,
+                  title: "Remaining Topping",
+                  number: 0.toString(),
+                  type: "GB",
+                  remaining: 0.0,
+                ),
+                UsageIndicator(
+                  iconData: Icons.phone_callback_rounded,
+                  title: "Remaining Phone",
+                  number: 0.toString(),
+                  type: "minutes",
+                  remaining: 0.0,
+                ),
+              ],
+            ),
+          ),
           AppVerContainer(),
         ],
       ),
       floatingActionButton: LiveChat(),
-    );
-  }
-
-  Container indicatorContainer(
-      BuildContext context, icon, title, number, type, double remaining) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(20, 5, 20, 10),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            spreadRadius: 1,
-            color: lightGrey2,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: primary1,
-                    size: 18,
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Remaining $title",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: secondBlack,
-                    ),
-                  ),
-                ],
-              ),
-              Text(
-                "$number $type",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: primary1,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 15),
-          Stack(
-            children: [
-              FractionallySizedBox(
-                widthFactor: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: lightGrey2,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  height: 10,
-                ),
-              ),
-              FractionallySizedBox(
-                widthFactor: remaining,
-                child: Container(
-                  // this container
-                  decoration: BoxDecoration(
-                    color: primary1,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  height: 10,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 5),
-        ],
-      ),
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:fake_mpwr/colors.dart';
-import 'package:fake_mpwr/custom_widgets/button_alert.dart';
 import 'package:fake_mpwr/custom_widgets/login_textfield.dart';
+import 'package:fake_mpwr/custom_widgets/outlined_circular_button.dart';
 import 'package:flutter/material.dart';
 
-class ActivateCard extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +14,7 @@ class ActivateCard extends StatelessWidget {
         elevation: 0,
         iconTheme: IconThemeData(color: secondBlack),
         title: Text(
-          'Activate SIM Card',
+          'Reset Password',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -27,7 +27,7 @@ class ActivateCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: Text(
-              "Input the 16-digit ICCID number available at the back of your SIM card.",
+              "Forgot your password? Input your registered email address to get a one-time verification link.",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -39,25 +39,25 @@ class ActivateCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             margin: EdgeInsets.only(bottom: 20),
             child: Image.asset(
-              "images/activate.png",
+              "images/lost.png",
               fit: BoxFit.cover,
             ),
           ),
           LoginTextField(
-            iconData: Icons.stars_rounded,
+            iconData: Icons.email_rounded,
             obscure: false,
-            type: TextInputType.number,
-            title: "ICCID Number",
+            type: TextInputType.emailAddress,
+            title: "Email Address",
           ),
-          ButtonAlert(
-            titleText: "Successful!",
-            contentText:
-                "You have activated your MPWR SIM card. Enjoy Internet!",
-            route: "/login",
-            alertIcon: Icons.login_rounded,
-            alertText: "Go to Login Page",
-            buttonIcon: Icons.phonelink_setup_rounded,
-            buttonText: "Activate Card",
+          Container(
+            height: 45,
+            margin: EdgeInsets.fromLTRB(20, 5, 20, 30),
+            child: OutlineCircularButton(
+              iconData: Icons.link_rounded,
+              labelText: "Get Verification Link",
+              myColor: primary1,
+              route: "/belum_ada",
+            ),
           ),
         ],
       ),

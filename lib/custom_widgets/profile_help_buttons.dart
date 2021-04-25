@@ -5,11 +5,12 @@ class ProfileHelpButtons extends StatelessWidget {
   final String labelText;
   final Color materialColor;
 
-  const ProfileHelpButtons({Key key, this.labelText, this.materialColor}) : super(key: key);
+  const ProfileHelpButtons({Key key, this.labelText, this.materialColor})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      margin: EdgeInsets.fromLTRB(15, 5, 15, 10),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: materialColor,
