@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/complete_header.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
@@ -22,10 +24,13 @@ class _SuccessfulOrderState extends State<SuccessfulOrder> {
   // Show current date & time
   String finalDate = "";
   String finalTime = "";
+  int trxNumber = 0;
+  int trackNumber = 0;
 
   void initState() {
     super.initState();
     getCurrentDate();
+    randomizer();
   }
 
   getCurrentDate() {
@@ -39,6 +44,14 @@ class _SuccessfulOrderState extends State<SuccessfulOrder> {
     setState(() {
       finalDate = formattedDate.toString();
       finalTime = formattedTime.toString();
+    });
+  }
+
+  randomizer() {
+    var rng = new Random();
+    setState(() {
+      trxNumber = rng.nextInt(999999) + 100000;
+      trackNumber = rng.nextInt(99999999) + 10000000;
     });
   }
 
@@ -82,7 +95,7 @@ class _SuccessfulOrderState extends State<SuccessfulOrder> {
                         SizedBox(height: 10),
                         OrderDetailsContainer(
                           title: "Order Number",
-                          description: "840285",
+                          description: "$trxNumber",
                         ),
                         OrderDetailsContainer(
                           title: "Order Name",
@@ -110,7 +123,7 @@ class _SuccessfulOrderState extends State<SuccessfulOrder> {
                         ),
                         OrderDetailsContainer(
                           title: "Tracking Number",
-                          description: "31093103019",
+                          description: "$trackNumber",
                         ),
                         Container(
                           height: 45,

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/complete_header.dart';
 import 'package:fake_mpwr/custom_widgets/buttons/button_fill_circular.dart';
@@ -10,7 +12,8 @@ class SuccessPayment extends StatefulWidget {
   final String package;
   final String bankName;
 
-  const SuccessPayment({Key key, this.value, this.bankName, this.package}) : super(key: key);
+  const SuccessPayment({Key key, this.value, this.bankName, this.package})
+      : super(key: key);
 
   @override
   _SuccessPaymentState createState() => _SuccessPaymentState();
@@ -20,10 +23,12 @@ class _SuccessPaymentState extends State<SuccessPayment> {
   // Show current date & time
   String finalDate = "";
   String finalTime = "";
+  int trxNumber = 0;
 
   void initState() {
     super.initState();
     getCurrentDate();
+    randomizer();
   }
 
   getCurrentDate() {
@@ -38,6 +43,11 @@ class _SuccessPaymentState extends State<SuccessPayment> {
       finalDate = formattedDate.toString();
       finalTime = formattedTime.toString();
     });
+  }
+
+  randomizer() {
+    var rng = new Random();
+    setState(() => trxNumber = rng.nextInt(999999) + 100000);
   }
 
   @override
@@ -80,7 +90,7 @@ class _SuccessPaymentState extends State<SuccessPayment> {
                         SizedBox(height: 10),
                         OrderDetailsContainer(
                           title: "Transaction Number",
-                          description: "840285",
+                          description: "$trxNumber",
                         ),
                         OrderDetailsContainer(
                           title: "Order Name",

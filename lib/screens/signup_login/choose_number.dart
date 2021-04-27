@@ -5,7 +5,6 @@ import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:fake_mpwr/screens/signup_login/shipping_page.dart';
 import 'package:fake_mpwr/screens/top_up/add_data.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ChooseNumber extends StatefulWidget {
   @override

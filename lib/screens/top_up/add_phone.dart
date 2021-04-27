@@ -2,9 +2,7 @@ import 'package:fake_mpwr/colors.dart';
 import 'package:fake_mpwr/custom_widgets/blue_header.dart';
 import 'package:fake_mpwr/custom_widgets/product_container.dart';
 import 'package:fake_mpwr/custom_widgets/text_widgets/text_style_one.dart';
-import 'package:fake_mpwr/custom_widgets/buttons/total_price_new.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'add_data.dart';
 
