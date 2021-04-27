@@ -30,7 +30,7 @@ class UsageScreen extends StatelessWidget {
               color: white,
             ),
             childWidget: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   height: 45,

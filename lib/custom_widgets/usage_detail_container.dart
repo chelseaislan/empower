@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 class UsageDetailContainer extends StatelessWidget {
   final IconData iconData;
   final String title;
-  final String number1;
-  final String number2;
+  final double number1;
+  final double number2;
   final String type;
-  final double remaining;
   final String activeUntil;
   final String whatHour;
   final bool isVisible;
@@ -18,7 +17,6 @@ class UsageDetailContainer extends StatelessWidget {
       this.title,
       this.number1,
       this.type,
-      this.remaining,
       this.number2,
       this.activeUntil,
       this.whatHour,
@@ -27,6 +25,7 @@ class UsageDetailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
       padding: EdgeInsets.all(15),
@@ -104,7 +103,7 @@ class UsageDetailContainer extends StatelessWidget {
                 ),
               ),
               FractionallySizedBox(
-                widthFactor: remaining,
+                widthFactor: number1 / number2,
                 child: Container(
                   // this container
                   decoration: BoxDecoration(
@@ -126,9 +125,7 @@ class UsageDetailContainer extends StatelessWidget {
             ),
           ),
         ],
-        
       ),
-      
     );
   }
 }

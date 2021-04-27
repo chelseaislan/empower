@@ -3,7 +3,6 @@ import 'package:fake_mpwr/custom_widgets/buttons/button_outline_circular.dart';
 import 'package:fake_mpwr/custom_widgets/usage_detail_container.dart';
 import 'package:flutter/material.dart';
 
-// TODO for Topping and Phone, also extract from Data section
 class UsageDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,9 +62,70 @@ class UsageDetail extends StatelessWidget {
         // 4 Body TabBarView
         body: TabBarView(
           children: [
-            UsageStackWidget(),
-            Text("data"),
-            Text("data"),
+            UsageStackWidget(
+              totalText: "Data",
+              totalNumber: "8.7",
+              totalGbOrPhone: "GB",
+              bottomRoute: "/add_data",
+              activePackages: [
+                UsageDetailContainer(
+                  iconData: Icons.language_rounded,
+                  title: "Kuota Kemendikbud",
+                  number1: 11.0,
+                  number2: 12.0,
+                  type: "GB",
+                  activeUntil: "29 April 2021",
+                  whatHour: "12:00",
+                  isVisible: true,
+                ),
+                UsageDetailContainer(
+                  iconData: Icons.language_rounded,
+                  title: "Friendly Package",
+                  number1: 10.0,
+                  number2: 12,
+                  type: "GB",
+                  activeUntil: "03 May 2021",
+                  whatHour: "10:00",
+                  isVisible: false,
+                ),
+              ],
+            ),
+            UsageStackWidget(
+              totalText: "Topping",
+              totalNumber: "0.2",
+              totalGbOrPhone: "GB",
+              bottomRoute: "/add_topping",
+              activePackages: [
+                UsageDetailContainer(
+                  iconData: Icons.add_chart_rounded,
+                  title: "GitHub Topping",
+                  number1: 0.3,
+                  number2: 1,
+                  type: "GB",
+                  activeUntil: "03 May 2021",
+                  whatHour: "10:00",
+                  isVisible: true,
+                ),
+              ],
+            ),
+            UsageStackWidget(
+              totalText: "Phone",
+              totalNumber: "0",
+              totalGbOrPhone: "minutes",
+              bottomRoute: "/add_phone",
+              activePackages: [
+                UsageDetailContainer(
+                  iconData: Icons.add_chart_rounded,
+                  title: "All-net Super",
+                  number1: 18,
+                  number2: 200,
+                  type: "minutes",
+                  activeUntil: "03 May 2021",
+                  whatHour: "10:00",
+                  isVisible: true,
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -74,8 +134,19 @@ class UsageDetail extends StatelessWidget {
 }
 
 class UsageStackWidget extends StatelessWidget {
+  final String totalText;
+  final String totalNumber;
+  final String totalGbOrPhone;
+  final String bottomRoute;
+  final List<Widget> activePackages;
+
   const UsageStackWidget({
     Key key,
+    this.totalText,
+    this.totalNumber,
+    this.totalGbOrPhone,
+    this.activePackages,
+    this.bottomRoute,
   }) : super(key: key);
 
   @override
@@ -95,7 +166,7 @@ class UsageStackWidget extends StatelessWidget {
             Container(
               padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Text(
-                "Total Data",
+                "Total $totalText",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,
@@ -107,7 +178,7 @@ class UsageStackWidget extends StatelessWidget {
             Container(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
               child: Text(
-                "8.5 GB",
+                "$totalNumber $totalGbOrPhone",
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w600,
@@ -134,30 +205,7 @@ class UsageStackWidget extends StatelessWidget {
               ),
             ),
             Column(
-              children: [
-                UsageDetailContainer(
-                  iconData: Icons.language_rounded,
-                  title: "Kuota Kemendikbud",
-                  number1: 4.0.toString(),
-                  number2: 12.toString(),
-                  type: "GB",
-                  remaining: 0.40,
-                  activeUntil: "29 April 2021",
-                  whatHour: "12:00",
-                  isVisible: true,
-                ),
-                UsageDetailContainer(
-                  iconData: Icons.language_rounded,
-                  title: "Friendly Package",
-                  number1: 4.5.toString(),
-                  number2: 12.toString(),
-                  type: "GB",
-                  remaining: 0.45,
-                  activeUntil: "03 May 2021",
-                  whatHour: "10:00",
-                  isVisible: false,
-                ),
-              ],
+              children: activePackages,
             ),
             SizedBox(height: 80),
           ],
@@ -167,10 +215,10 @@ class UsageStackWidget extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: OutlineCircularButton(
             iconData: Icons.add_circle_rounded,
-            labelText: "Buy Data Packages",
+            labelText: "Buy $totalText Packages",
             myColor: appBarColor,
             onPressed: () async {
-              await Navigator.of(context).pushNamed("/add_data");
+              await Navigator.of(context).pushNamed(bottomRoute);
             },
           ),
         ),

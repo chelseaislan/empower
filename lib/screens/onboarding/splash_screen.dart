@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         // Background gradient MPWR
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [primary1, primary2],
+            colors: [primary2, primary1],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
