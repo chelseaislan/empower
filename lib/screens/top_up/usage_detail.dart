@@ -97,7 +97,7 @@ class UsageDetail extends StatelessWidget {
               bottomRoute: "/add_topping",
               activePackages: [
                 UsageDetailContainer(
-                  iconData: Icons.add_chart_rounded,
+                  iconData: Icons.addchart_rounded,
                   title: "GitHub Topping",
                   number1: 0.3,
                   number2: 1,
@@ -115,7 +115,7 @@ class UsageDetail extends StatelessWidget {
               bottomRoute: "/add_phone",
               activePackages: [
                 UsageDetailContainer(
-                  iconData: Icons.add_chart_rounded,
+                  iconData: Icons.addchart_rounded,
                   title: "All-net Super",
                   number1: 18,
                   number2: 200,

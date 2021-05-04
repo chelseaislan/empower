@@ -82,7 +82,7 @@ class Referral extends StatelessWidget {
                               gravity: ToastGravity.BOTTOM,
                             ),
                             icon: Icon(
-                              Icons.copy_all_rounded,
+                              Icons.content_copy_rounded,
                               size: 30,
                               color: white,
                             ),
@@ -99,7 +99,7 @@ class Referral extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             margin: EdgeInsets.only(bottom: 20),
             child: OutlineCircularButton(
-              iconData: Icons.share_arrival_time_rounded,
+              iconData: Icons.timer_rounded,
               labelText: "Share Referral Code",
               myColor: appBarColor,
               onPressed: () => Fluttertoast.showToast(

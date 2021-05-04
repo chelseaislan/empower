@@ -13,7 +13,9 @@ class SignupLogin extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/radio");
+            },
             icon: Icon(Icons.info_rounded, color: white),
             tooltip: "About",
           ),
@@ -93,7 +95,7 @@ class SignupLogin extends StatelessWidget {
                 Container(
                   height: 45,
                   child: OutlineCircularButton(
-                    iconData: Icons.password_rounded,
+                    iconData: Icons.vpn_key_rounded,
                     labelText: "Reset Password",
                     onPressed: () async {
                       await Navigator.of(context).pushNamed("/reset_pass");

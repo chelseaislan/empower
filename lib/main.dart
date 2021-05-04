@@ -1,4 +1,3 @@
-import 'package:fake_mpwr/screens/home_navbar/nav_notifications.dart';
 import 'package:fake_mpwr/screens/home_navbar/navbar.dart';
 import 'package:fake_mpwr/screens/onboarding/onboarding_function.dart';
 import 'package:fake_mpwr/screens/onboarding/splash_screen.dart';
@@ -7,6 +6,7 @@ import 'package:fake_mpwr/screens/profile_page/edit_profile.dart';
 import 'package:fake_mpwr/screens/profile_page/referral.dart';
 import 'package:fake_mpwr/screens/signup_login/activate_card.dart';
 import 'package:fake_mpwr/screens/signup_login/choose_number.dart';
+import 'package:fake_mpwr/screens/signup_login/custom_radio.dart';
 import 'package:fake_mpwr/screens/signup_login/payment_method.dart';
 import 'package:fake_mpwr/screens/signup_login/reset_password.dart';
 import 'package:fake_mpwr/screens/signup_login/shipping_page.dart';
@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
         "/edit_profile": (context) => new EditProfile(),
         "/edit_address": (context) => new EditAddress(),
         "/usage_detail": (context) => new UsageDetail(),
-        "/nav_notif": (context) => new NavNotifications(),
         "/referral": (context) => new Referral(),
+        "/radio": (context) => new CustomRadio(),
       },
     );
   }

@@ -77,7 +77,7 @@ class WalletScreen extends StatelessWidget {
                 price: "Rp15",
               ),
               ProductContainer(
-                iconData: Icons.add_chart_rounded,
+                iconData: Icons.addchart_rounded,
                 iconColor: primary1,
                 shadowColor: lightGrey2,
                 title: "GitHub Topping",
@@ -85,7 +85,7 @@ class WalletScreen extends StatelessWidget {
                 price: "Rp10",
               ),
               ProductContainer(
-                iconData: Icons.add_chart_rounded,
+                iconData: Icons.addchart_rounded,
                 iconColor: primary1,
                 shadowColor: lightGrey2,
                 title: "Reddit Topping",

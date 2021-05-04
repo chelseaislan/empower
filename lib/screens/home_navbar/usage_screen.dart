@@ -86,7 +86,7 @@ class UsageScreen extends StatelessWidget {
                   remaining: 0.0,
                 ),
                 UsageIndicator(
-                  iconData: Icons.add_chart_rounded,
+                  iconData: Icons.addchart_rounded,
                   title: "Remaining Topping",
                   number: 0.toString(),
                   type: "GB",

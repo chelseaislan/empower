@@ -46,7 +46,7 @@ class OfferScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.add_chart_rounded, color: primary1),
+                            Icon(Icons.addchart_rounded, color: primary1),
                             SizedBox(width: 5),
                             Text("0 GB"),
                           ],
@@ -149,9 +149,7 @@ class NavBarAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed("/nav_notif");
-          },
+          onPressed: () {},
           icon: Icon(Icons.notifications_rounded),
           tooltip: "Notifications",
         ),
